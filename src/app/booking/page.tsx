@@ -3,20 +3,16 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { 
   Calendar, 
   Users, 
-  Bed, 
-  Star, 
-  CreditCard,
   CheckCircle,
   ArrowRight,
   ArrowLeft,
   Sparkles,
   Zap,
   Shield,
-  Wifi,
   Clock,
   MapPin,
   Phone,
@@ -29,124 +25,122 @@ import {
 import { useState, useRef, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-const rooms = [
+// Church events and services for booking
+const events = [
   {
     id: 1,
-    name: "Quantum Luxury Suite",
-    price: 2089,
-    originalPrice: 2500,
-    size: "85 m²",
-    guests: 2,
-    beds: 1,
-    image: "/api/placeholder/400/300",
-    features: ["Holographic Entertainment", "Neural Climate Control", "Quantum Memory Foam"],
+    name: "Sunday Worship Service",
+    price: 0,
+    originalPrice: 0,
+    duration: "2 hours",
+    capacity: 200,
+    attendees: 1,
+    image: "/room14.jpeg",
+    features: ["Live Worship Music", "Sermon by Apostle Elijah", "Community Fellowship"],
     amenities: [
-      { icon: Wifi, name: "Quantum WiFi 7.0" },
-      { icon: Zap, name: "Wireless Charging" },
-      { icon: Shield, name: "Biometric Security" }
+      { icon: Users, name: "Community Gathering" },
+      { icon: Clock, name: "Weekly Service" },
+      { icon: MapPin, name: "Main Sanctuary" }
     ]
   },
   {
     id: 2,
-    name: "Cyberpunk Penthouse",
-    price: 3500,
-    originalPrice: 4200,
-    size: "150 m²",
-    guests: 4,
-    beds: 2,
-    image: "/api/placeholder/400/300",
-    features: ["360° City View", "Quantum Gaming Station", "Personal Teleportation Pod"],
+    name: "Prayer & Healing Service",
+    price: 0,
+    originalPrice: 0,
+    duration: "1.5 hours",
+    capacity: 100,
+    attendees: 1,
+    image: "/room11.jpeg",
+    features: ["Intercessory Prayer", "Healing Ministry", "Anointing Service"],
     amenities: [
-      { icon: Wifi, name: "Neural Network" },
-      { icon: Zap, name: "Quantum Power Core" },
-      { icon: Shield, name: "Elite Security" }
+      { icon: Users, name: "Prayer Ministry" },
+      { icon: Clock, name: "Monthly Service" },
+      { icon: MapPin, name: "Prayer Hall" }
     ]
   },
   {
     id: 3,
-    name: "Neo-Tokyo Standard",
-    price: 1200,
-    originalPrice: 1500,
-    size: "45 m²",
-    guests: 2,
-    beds: 1,
-    image: "/api/placeholder/400/300",
-    features: ["Smart Mirror Interface", "Voice Control", "Digital Art Gallery"],
+    name: "Bible Study Workshop",
+    price: 50,
+    originalPrice: 75,
+    duration: "3 hours",
+    capacity: 50,
+    attendees: 1,
+    image: "/room6.jpeg",
+    features: ["In-depth Bible Teaching", "Group Discussion", "Q&A Session"],
     amenities: [
-      { icon: Wifi, name: "High-Speed Quantum" },
-      { icon: Zap, name: "Wireless Everything" },
-      { icon: Shield, name: "Smart Security" }
+      { icon: Users, name: "Study Group" },
+      { icon: Clock, name: "Weekly Workshop" },
+      { icon: MapPin, name: "Fellowship Hall" }
     ]
   }
 ];
 
 const addOns = [
   {
-    id: "holo-butler",
-    name: "Holographic Butler",
-    description: "Personal AI assistant available 24/7",
-    price: 200,
-    unit: "per night"
+    id: "meal-service",
+    name: "Community Meal",
+    description: "Join us for fellowship dinner after the service",
+    price: 25,
+    unit: "per person"
   },
   {
-    id: "quantum-spa",
-    name: "Quantum Spa Access",
-    description: "Advanced healing and relaxation chambers",
-    price: 350,
-    unit: "per stay"
+    id: "childcare",
+    name: "Children's Ministry",
+    description: "Professional childcare during adult services",
+    price: 15,
+    unit: "per child"
   },
   {
-    id: "neural-dining",
-    name: "Neural Gastronomy",
-    description: "AI-curated molecular cuisine experience",
-    price: 150,
-    unit: "per meal"
+    id: "transport",
+    name: "Transportation Service",
+    description: "Pickup and drop-off service for elderly and disabled",
+    price: 20,
+    unit: "per person"
   },
   {
-    id: "vr-entertainment",
-    name: "Premium VR Entertainment",
-    description: "Access to exclusive virtual reality experiences",
-    price: 100,
-    unit: "per night"
+    id: "materials",
+    name: "Study Materials",
+    description: "Bible study guides and worship resources",
+    price: 10,
+    unit: "per person"
   },
   {
-    id: "quantum-transport",
-    name: "Quantum Transportation",
-    description: "Personal teleportation service within the city",
-    price: 500,
-    unit: "per ride"
+    id: "donation",
+    name: "Special Donation",
+    description: "Support our ministry work and community outreach",
+    price: 0,
+    unit: "suggested donation"
   }
 ];
 
 const steps = [
-  { id: 1, title: "Select Room", description: "Choose your quantum suite" },
-  { id: 2, title: "Dates & Guests", description: "Pick your travel dates" },
-  { id: 3, title: "Add-ons", description: "Enhance your experience" },
-  { id: 4, title: "Guest Details", description: "Your information" },
-  { id: 5, title: "Payment", description: "Secure quantum checkout" },
-  { id: 6, title: "Confirmation", description: "Booking complete" }
+  { id: 1, title: "Select Event", description: "Choose your service or program" },
+  { id: 2, title: "Event Details", description: "Date, time, and attendance" },
+  { id: 3, title: "Additional Services", description: "Meals, childcare, transport" },
+  { id: 4, title: "Guest Information", description: "Your details and needs" },
+  { id: 5, title: "Registration", description: "Complete your registration" },
+  { id: 6, title: "Confirmation", description: "Registration complete" }
 ];
 
 function BookingPageContent() {
   const [currentStep, setCurrentStep] = useState(1);
-  const [selectedRoom, setSelectedRoom] = useState<number | null>(null);
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
-  const [guests, setGuests] = useState(1);
+  const [selectedEvent, setSelectedEvent] = useState<number | null>(null);
+  const [eventDate, setEventDate] = useState("");
+  const [eventTime, setEventTime] = useState("");
+  const [attendees, setAttendees] = useState(1);
+  const [children, setChildren] = useState(0);
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   const [guestInfo, setGuestInfo] = useState({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
-    specialRequests: ""
+    specialRequests: "",
+    prayerRequests: ""
   });
-  const [paymentInfo, setPaymentInfo] = useState({
-    cardNumber: "",
-    expiryDate: "",
-    cvv: "",
-    nameOnCard: ""
-  });
+  const [donationAmount, setDonationAmount] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
 
   const heroRef = useRef(null);
@@ -159,35 +153,35 @@ function BookingPageContent() {
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
-  // Pre-select room from URL params
+  // Pre-select event from URL params
   useEffect(() => {
-    const roomId = searchParams.get('room');
-    if (roomId) {
-      setSelectedRoom(parseInt(roomId));
+    const eventId = searchParams.get('event');
+    if (eventId) {
+      setSelectedEvent(parseInt(eventId));
       setCurrentStep(2);
     }
   }, [searchParams]);
 
-  // Calculate totals
-  const selectedRoomData = rooms.find(room => room.id === selectedRoom);
-  const nights = checkIn && checkOut ? 
-    Math.ceil((new Date(checkOut).getTime() - new Date(checkIn).getTime()) / (1000 * 60 * 60 * 24)) : 0;
+  // Calculate totals for church event registration
+  const selectedEventData = events.find(event => event.id === selectedEvent);
   
-  const roomTotal = selectedRoomData ? selectedRoomData.price * nights : 0;
+  const baseEventCost = selectedEventData ? selectedEventData.price * attendees : 0;
   const addOnTotal = selectedAddOns.reduce((total, addOnId) => {
     const addOn = addOns.find(a => a.id === addOnId);
     if (addOn) {
-      if (addOn.unit === "per night") {
-        return total + (addOn.price * nights);
+      if (addOn.id === "childcare") {
+        return total + (addOn.price * children);
+      } else if (addOn.id === "meal-service" || addOn.id === "transport" || addOn.id === "materials") {
+        return total + (addOn.price * attendees);
       } else {
         return total + addOn.price;
       }
     }
     return total;
   }, 0);
-  const subtotal = roomTotal + addOnTotal;
-  const taxes = subtotal * 0.15;
-  const total = subtotal + taxes;
+  const subtotal = baseEventCost + addOnTotal + donationAmount;
+  const processingFee = subtotal > 0 ? 5 : 0; // Small processing fee for paid events
+  const total = subtotal + processingFee;
 
   const nextStep = () => {
     if (currentStep < 6) {
@@ -219,11 +213,11 @@ function BookingPageContent() {
 
   const canProceed = () => {
     switch (currentStep) {
-      case 1: return selectedRoom !== null;
-      case 2: return checkIn && checkOut && guests > 0;
+      case 1: return selectedEvent !== null;
+      case 2: return eventDate && eventTime && attendees > 0;
       case 3: return true; // Add-ons are optional
       case 4: return guestInfo.firstName && guestInfo.lastName && guestInfo.email && guestInfo.phone;
-      case 5: return paymentInfo.cardNumber && paymentInfo.expiryDate && paymentInfo.cvv && paymentInfo.nameOnCard;
+      case 5: return true; // Registration is always possible, payment optional
       default: return true;
     }
   };
@@ -248,10 +242,10 @@ function BookingPageContent() {
             className="space-y-6"
           >
             <h1 className="text-4xl md:text-6xl font-bold text-gradient font-['Orbitron'] mb-4">
-              QUANTUM BOOKING
+              EVENT REGISTRATION
             </h1>
             <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto">
-              Reserve your spot in the future. Experience luxury beyond imagination.
+              Join us in worship, fellowship, and spiritual growth. Register for our upcoming services and events.
             </p>
           </motion.div>
         </div>
@@ -321,27 +315,27 @@ function BookingPageContent() {
                     className="space-y-8"
                   >
                     <h2 className="text-3xl font-bold text-gradient font-['Orbitron']">
-                      Choose Your Quantum Suite
+                      Choose Your Event
                     </h2>
                     
                     <div className="space-y-6">
-                      {rooms.map((room) => (
+                      {events.map((event) => (
                         <motion.div
-                          key={room.id}
+                          key={event.id}
                           whileHover={{ scale: 1.02 }}
-                          onClick={() => setSelectedRoom(room.id)}
+                          onClick={() => setSelectedEvent(event.id)}
                           className={`cursor-pointer transition-all duration-300 ${
-                            selectedRoom === room.id ? "ring-2 ring-blue-400" : ""
+                            selectedEvent === event.id ? "ring-2 ring-blue-400" : ""
                           }`}
                         >
                           <Card className={`glass-morphism hover:bg-white/10 transition-all duration-300 ${
-                            selectedRoom === room.id ? "neon-border" : "border-white/20"
+                            selectedEvent === event.id ? "neon-border" : "border-white/20"
                           }`}>
                             <CardContent className="p-6">
                               <div className="grid md:grid-cols-3 gap-6 items-center">
                                 <div className="md:col-span-1">
                                   <div className="w-full h-48 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg flex items-center justify-center">
-                                    <Sparkles className="w-16 h-16 text-blue-400 animate-pulse" />
+                                    <Users className="w-16 h-16 text-blue-400 animate-pulse" />
                                   </div>
                                 </div>
                                 
@@ -349,38 +343,40 @@ function BookingPageContent() {
                                   <div className="flex justify-between items-start">
                                     <div>
                                       <h3 className="text-xl font-bold text-white font-['Orbitron'] mb-2">
-                                        {room.name}
+                                        {event.name}
                                       </h3>
                                       <div className="flex items-center space-x-4 text-sm text-white/60">
                                         <span className="flex items-center space-x-1">
-                                          <MapPin className="w-4 h-4" />
-                                          <span>{room.size}</span>
+                                          <Clock className="w-4 h-4" />
+                                          <span>{event.duration}</span>
                                         </span>
                                         <span className="flex items-center space-x-1">
                                           <Users className="w-4 h-4" />
-                                          <span>{room.guests} guests</span>
+                                          <span>{event.capacity} capacity</span>
                                         </span>
                                         <span className="flex items-center space-x-1">
-                                          <Bed className="w-4 h-4" />
-                                          <span>{room.beds} bed{room.beds > 1 ? 's' : ''}</span>
+                                          <MapPin className="w-4 h-4" />
+                                          <span>Church Facility</span>
                                         </span>
                                       </div>
                                     </div>
                                     <div className="text-right">
                                       <div className="text-2xl font-bold text-gradient">
-                                        R{room.price}
+                                        {event.price === 0 ? "FREE" : `R${event.price}`}
                                       </div>
-                                      <div className="text-sm text-white/50 line-through">
-                                        R{room.originalPrice}
-                                      </div>
-                                      <div className="text-xs text-white/60">per night</div>
+                                      {event.originalPrice > 0 && (
+                                        <div className="text-sm text-white/50 line-through">
+                                          R{event.originalPrice}
+                                        </div>
+                                      )}
+                                      <div className="text-xs text-white/60">per person</div>
                                     </div>
                                   </div>
 
                                   <div className="space-y-3">
                                     <h4 className="text-sm font-semibold text-white/80">Features:</h4>
                                     <div className="grid md:grid-cols-2 gap-2">
-                                      {room.features.map((feature, index) => (
+                                      {event.features.map((feature, index) => (
                                         <div key={index} className="flex items-center space-x-2 text-sm text-white/60">
                                           <CheckCircle className="w-3 h-3 text-green-400" />
                                           <span>{feature}</span>
@@ -390,7 +386,7 @@ function BookingPageContent() {
                                   </div>
 
                                   <div className="flex space-x-3">
-                                    {room.amenities.map((amenity, index) => (
+                                    {event.amenities.map((amenity, index) => (
                                       <div key={index} className="flex items-center space-x-1 text-xs text-blue-400">
                                         <amenity.icon className="w-3 h-3" />
                                         <span>{amenity.name}</span>
@@ -417,7 +413,7 @@ function BookingPageContent() {
                     className="space-y-8"
                   >
                     <h2 className="text-3xl font-bold text-gradient font-['Orbitron']">
-                      Select Dates & Guests
+                      Event Details
                     </h2>
                     
                     <Card className="glass-morphism neon-border">
@@ -425,68 +421,106 @@ function BookingPageContent() {
                         <div className="grid md:grid-cols-2 gap-6">
                           <div>
                             <label className="block text-white/80 text-sm font-medium mb-2">
-                              Check-in Date
+                              Event Date
                             </label>
                             <Input
                               type="date"
-                              value={checkIn}
-                              onChange={(e) => setCheckIn(e.target.value)}
+                              value={eventDate}
+                              onChange={(e) => setEventDate(e.target.value)}
                               className="glass-morphism border-white/20 text-white"
                               min={new Date().toISOString().split('T')[0]}
                             />
                           </div>
                           <div>
                             <label className="block text-white/80 text-sm font-medium mb-2">
-                              Check-out Date
+                              Preferred Time
                             </label>
-                            <Input
-                              type="date"
-                              value={checkOut}
-                              onChange={(e) => setCheckOut(e.target.value)}
-                              className="glass-morphism border-white/20 text-white"
-                              min={checkIn || new Date().toISOString().split('T')[0]}
-                            />
+                            <select
+                              value={eventTime}
+                              onChange={(e) => setEventTime(e.target.value)}
+                              className="w-full rounded-md border border-white/20 bg-transparent px-3 py-2 text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-400"
+                            >
+                              <option value="" className="bg-gray-800">Select time</option>
+                              <option value="09:00" className="bg-gray-800">9:00 AM</option>
+                              <option value="10:00" className="bg-gray-800">10:00 AM</option>
+                              <option value="11:00" className="bg-gray-800">11:00 AM</option>
+                              <option value="14:00" className="bg-gray-800">2:00 PM</option>
+                              <option value="15:00" className="bg-gray-800">3:00 PM</option>
+                              <option value="18:00" className="bg-gray-800">6:00 PM</option>
+                              <option value="19:00" className="bg-gray-800">7:00 PM</option>
+                            </select>
                           </div>
                         </div>
 
                         <div>
                           <label className="block text-white/80 text-sm font-medium mb-4">
-                            Number of Guests
+                            Number of Attendees
                           </label>
                           <div className="flex items-center space-x-4">
                             <Button
                               variant="outline"
                               size="icon"
-                              onClick={() => setGuests(Math.max(1, guests - 1))}
+                              onClick={() => setAttendees(Math.max(1, attendees - 1))}
                               className="cyber-button"
-                              disabled={guests <= 1}
+                              disabled={attendees <= 1}
                             >
                               <Minus className="w-4 h-4" />
                             </Button>
                             <span className="text-2xl font-bold text-white w-16 text-center">
-                              {guests}
+                              {attendees}
                             </span>
                             <Button
                               variant="outline"
                               size="icon"
-                              onClick={() => setGuests(Math.min(selectedRoomData?.guests || 1, guests + 1))}
+                              onClick={() => setAttendees(Math.min(selectedEventData?.capacity || 1, attendees + 1))}
                               className="cyber-button"
-                              disabled={guests >= (selectedRoomData?.guests || 1)}
+                              disabled={attendees >= (selectedEventData?.capacity || 1)}
                             >
                               <Plus className="w-4 h-4" />
                             </Button>
                           </div>
                           <p className="text-xs text-white/60 mt-2">
-                            Maximum {selectedRoomData?.guests} guests for this room
+                            Maximum {selectedEventData?.capacity} attendees for this event
                           </p>
                         </div>
 
-                        {nights > 0 && (
+                        <div>
+                          <label className="block text-white/80 text-sm font-medium mb-4">
+                            Children (under 12)
+                          </label>
+                          <div className="flex items-center space-x-4">
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              onClick={() => setChildren(Math.max(0, children - 1))}
+                              className="cyber-button"
+                              disabled={children <= 0}
+                            >
+                              <Minus className="w-4 h-4" />
+                            </Button>
+                            <span className="text-2xl font-bold text-white w-16 text-center">
+                              {children}
+                            </span>
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              onClick={() => setChildren(children + 1)}
+                              className="cyber-button"
+                            >
+                              <Plus className="w-4 h-4" />
+                            </Button>
+                          </div>
+                          <p className="text-xs text-white/60 mt-2">
+                            Children under 12 qualify for childcare services
+                          </p>
+                        </div>
+
+                        {eventDate && eventTime && (
                           <div className="bg-blue-500/10 border border-blue-400/30 rounded-lg p-4">
                             <div className="flex items-center space-x-2 text-blue-300">
-                              <Clock className="w-5 h-5" />
+                              <Calendar className="w-5 h-5" />
                               <span className="font-semibold">
-                                {nights} night{nights > 1 ? 's' : ''} stay
+                                {attendees} attendee{attendees > 1 ? 's' : ''} registered for {eventDate} at {eventTime}
                               </span>
                             </div>
                           </div>
@@ -506,7 +540,7 @@ function BookingPageContent() {
                     className="space-y-8"
                   >
                     <h2 className="text-3xl font-bold text-gradient font-['Orbitron']">
-                      Enhance Your Experience
+                      Additional Services
                     </h2>
                     
                     <div className="space-y-4">
@@ -541,7 +575,7 @@ function BookingPageContent() {
                                 </div>
                                 <div className="text-right">
                                   <div className="text-xl font-bold text-gradient">
-                                    +R{addOn.price}
+                                    {addOn.price === 0 ? "FREE" : `+R${addOn.price}`}
                                   </div>
                                   <div className="text-xs text-white/60">{addOn.unit}</div>
                                 </div>
@@ -552,13 +586,13 @@ function BookingPageContent() {
                       ))}
                     </div>
 
-                    <div className="bg-yellow-500/10 border border-yellow-400/30 rounded-lg p-4">
-                      <div className="flex items-start space-x-2 text-yellow-300">
+                    <div className="bg-emerald-500/10 border border-emerald-400/30 rounded-lg p-4">
+                      <div className="flex items-start space-x-2 text-emerald-300">
                         <Gift className="w-5 h-5 mt-0.5" />
                         <div>
-                          <p className="font-semibold">Special Offer</p>
-                          <p className="text-sm text-yellow-300/80">
-                            Add 3 or more services and get 15% off your add-ons!
+                          <p className="font-semibold">Blessing Opportunity</p>
+                          <p className="text-sm text-emerald-300/80">
+                            Your participation helps support our community outreach and ministry work.
                           </p>
                         </div>
                       </div>
@@ -635,13 +669,13 @@ function BookingPageContent() {
 
                         <div>
                           <label className="block text-white/80 text-sm font-medium mb-2">
-                            Special Requests
+                            Prayer Requests
                           </label>
                           <textarea
-                            value={guestInfo.specialRequests}
-                            onChange={(e) => setGuestInfo(prev => ({...prev, specialRequests: e.target.value}))}
-                            className="w-full h-32 rounded-md border border-white/20 bg-transparent px-3 py-2 text-white text-sm placeholder:text-white/50 focus:outline-none focus:ring-1 focus:ring-blue-400 resize-none"
-                            placeholder="Any special requests or preferences..."
+                            value={guestInfo.prayerRequests}
+                            onChange={(e) => setGuestInfo(prev => ({...prev, prayerRequests: e.target.value}))}
+                            className="w-full h-24 rounded-md border border-white/20 bg-transparent px-3 py-2 text-white text-sm placeholder:text-white/50 focus:outline-none focus:ring-1 focus:ring-blue-400 resize-none"
+                            placeholder="Share any prayer requests or special intentions..."
                           />
                         </div>
                       </CardContent>
@@ -659,74 +693,52 @@ function BookingPageContent() {
                     className="space-y-8"
                   >
                     <h2 className="text-3xl font-bold text-gradient font-['Orbitron']">
-                      Secure Payment
+                      Complete Registration
                     </h2>
                     
                     <Card className="glass-morphism neon-border">
                       <CardContent className="p-8 space-y-6">
                         <div className="flex items-center space-x-2 text-green-400 mb-6">
                           <Shield className="w-5 h-5" />
-                          <span className="text-sm">Quantum-encrypted secure payment</span>
+                          <span className="text-sm">Secure registration and donation processing</span>
                         </div>
 
-                        <div>
-                          <label className="block text-white/80 text-sm font-medium mb-2">
-                            Card Number *
-                          </label>
-                          <Input
-                            value={paymentInfo.cardNumber}
-                            onChange={(e) => setPaymentInfo(prev => ({...prev, cardNumber: e.target.value}))}
-                            className="glass-morphism border-white/20 text-white placeholder:text-white/50"
-                            placeholder="1234 5678 9012 3456"
-                            maxLength={19}
-                          />
-                        </div>
-
-                        <div className="grid md:grid-cols-3 gap-6">
+                        {total > 0 && (
                           <div>
                             <label className="block text-white/80 text-sm font-medium mb-2">
-                              Expiry Date *
+                              Donation Amount (Optional)
                             </label>
+                            <div className="grid grid-cols-4 gap-2 mb-4">
+                              {[25, 50, 100, 200].map((amount) => (
+                                <Button
+                                  key={amount}
+                                  variant={donationAmount === amount ? "default" : "outline"}
+                                  size="sm"
+                                  onClick={() => setDonationAmount(amount)}
+                                  className="cyber-button"
+                                >
+                                  R{amount}
+                                </Button>
+                              ))}
+                            </div>
                             <Input
-                              value={paymentInfo.expiryDate}
-                              onChange={(e) => setPaymentInfo(prev => ({...prev, expiryDate: e.target.value}))}
+                              type="number"
+                              value={donationAmount || ""}
+                              onChange={(e) => setDonationAmount(Number(e.target.value) || 0)}
                               className="glass-morphism border-white/20 text-white placeholder:text-white/50"
-                              placeholder="MM/YY"
-                              maxLength={5}
+                              placeholder="Custom amount"
+                              min="0"
                             />
                           </div>
-                          <div>
-                            <label className="block text-white/80 text-sm font-medium mb-2">
-                              CVV *
-                            </label>
-                            <Input
-                              value={paymentInfo.cvv}
-                              onChange={(e) => setPaymentInfo(prev => ({...prev, cvv: e.target.value}))}
-                              className="glass-morphism border-white/20 text-white placeholder:text-white/50"
-                              placeholder="123"
-                              maxLength={4}
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-white/80 text-sm font-medium mb-2">
-                              Name on Card *
-                            </label>
-                            <Input
-                              value={paymentInfo.nameOnCard}
-                              onChange={(e) => setPaymentInfo(prev => ({...prev, nameOnCard: e.target.value}))}
-                              className="glass-morphism border-white/20 text-white placeholder:text-white/50"
-                              placeholder="John Doe"
-                            />
-                          </div>
-                        </div>
+                        )}
 
                         <div className="bg-blue-500/10 border border-blue-400/30 rounded-lg p-4">
                           <div className="flex items-start space-x-2 text-blue-300">
                             <AlertCircle className="w-5 h-5 mt-0.5" />
                             <div>
-                              <p className="font-semibold">Payment Security</p>
+                              <p className="font-semibold">Registration Information</p>
                               <p className="text-sm text-blue-300/80">
-                                Your payment is protected by quantum encryption and biometric verification.
+                                Your information helps us serve you better and follow up on your spiritual journey.
                               </p>
                             </div>
                           </div>
@@ -758,35 +770,36 @@ function BookingPageContent() {
                     </h2>
                     
                     <p className="text-xl text-white/80 max-w-2xl mx-auto">
-                      Welcome to the future! Your quantum suite has been reserved. 
-                      A confirmation has been sent to your neural implant and email.
+                      Thank you for registering! Your spot has been reserved and a confirmation has been sent to your email.
                     </p>
 
                     <Card className="glass-morphism neon-border max-w-md mx-auto">
                       <CardContent className="p-6 space-y-4">
                         <div className="text-center">
-                          <div className="text-sm text-white/60">Booking Reference</div>
+                          <div className="text-sm text-white/60">Registration Reference</div>
                           <div className="text-2xl font-bold text-gradient font-mono">
-                            QS{Date.now().toString().slice(-6)}
+                            ECC{Date.now().toString().slice(-6)}
                           </div>
                         </div>
                         <div className="border-t border-white/20 pt-4 space-y-2 text-sm">
                           <div className="flex justify-between">
-                            <span className="text-white/60">Room:</span>
-                            <span className="text-white">{selectedRoomData?.name}</span>
+                            <span className="text-white/60">Event:</span>
+                            <span className="text-white">{selectedEventData?.name}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-white/60">Dates:</span>
-                            <span className="text-white">{checkIn} to {checkOut}</span>
+                            <span className="text-white/60">Date & Time:</span>
+                            <span className="text-white">{eventDate} at {eventTime}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-white/60">Guests:</span>
-                            <span className="text-white">{guests}</span>
+                            <span className="text-white/60">Attendees:</span>
+                            <span className="text-white">{attendees} adult{attendees > 1 ? 's' : ''}{children > 0 ? ` + ${children} child${children > 1 ? 'ren' : ''}` : ''}</span>
                           </div>
-                          <div className="flex justify-between font-bold text-lg">
-                            <span className="text-white">Total:</span>
-                            <span className="text-gradient">R{total.toFixed(2)}</span>
-                          </div>
+                          {total > 0 && (
+                            <div className="flex justify-between font-bold text-lg">
+                              <span className="text-white">Total:</span>
+                              <span className="text-gradient">R{total.toFixed(2)}</span>
+                            </div>
+                          )}
                         </div>
                       </CardContent>
                     </Card>
@@ -826,13 +839,13 @@ function BookingPageContent() {
                     >
                       {isProcessing ? (
                         <>
-                          <Zap className="mr-2 h-4 w-4 animate-pulse" />
+                          <Shield className="mr-2 h-4 w-4 animate-pulse" />
                           Processing...
                         </>
                       ) : (
                         <>
-                          <CreditCard className="mr-2 h-4 w-4" />
-                          Complete Booking
+                          <CheckCircle className="mr-2 h-4 w-4" />
+                          Complete Registration
                         </>
                       )}
                     </Button>
@@ -860,27 +873,28 @@ function BookingPageContent() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    {selectedRoomData && (
+                    {selectedEventData && (
                       <div>
-                        <h3 className="font-semibold text-white mb-2">{selectedRoomData.name}</h3>
+                        <h3 className="font-semibold text-white mb-2">{selectedEventData.name}</h3>
                         <div className="text-sm space-y-1 text-white/60">
-                          <div>Size: {selectedRoomData.size}</div>
-                          <div>Guests: {guests}</div>
-                          {nights > 0 && <div>Nights: {nights}</div>}
+                          <div>Duration: {selectedEventData.duration}</div>
+                          <div>Capacity: {selectedEventData.capacity}</div>
+                          {attendees > 0 && <div>Attendees: {attendees}</div>}
+                          {children > 0 && <div>Children: {children}</div>}
                         </div>
                       </div>
                     )}
 
-                    {checkIn && checkOut && (
+                    {eventDate && eventTime && (
                       <div className="border-t border-white/20 pt-4">
                         <div className="text-sm space-y-2">
                           <div className="flex justify-between">
-                            <span className="text-white/60">Check-in:</span>
-                            <span className="text-white">{checkIn}</span>
+                            <span className="text-white/60">Date:</span>
+                            <span className="text-white">{eventDate}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-white/60">Check-out:</span>
-                            <span className="text-white">{checkOut}</span>
+                            <span className="text-white/60">Time:</span>
+                            <span className="text-white">{eventTime}</span>
                           </div>
                         </div>
                       </div>
@@ -888,14 +902,14 @@ function BookingPageContent() {
 
                     {selectedAddOns.length > 0 && (
                       <div className="border-t border-white/20 pt-4">
-                        <h4 className="font-semibold text-white mb-2">Add-ons:</h4>
+                        <h4 className="font-semibold text-white mb-2">Additional Services:</h4>
                         <div className="space-y-2 text-sm">
                           {selectedAddOns.map(addOnId => {
                             const addOn = addOns.find(a => a.id === addOnId);
                             return addOn ? (
                               <div key={addOnId} className="flex justify-between text-white/80">
                                 <span>{addOn.name}</span>
-                                <span>R{addOn.price}</span>
+                                <span>{addOn.price === 0 ? "FREE" : `R${addOn.price}`}</span>
                               </div>
                             ) : null;
                           })}
@@ -903,22 +917,30 @@ function BookingPageContent() {
                       </div>
                     )}
 
-                    {roomTotal > 0 && (
+                    {total > 0 && (
                       <div className="border-t border-white/20 pt-4 space-y-2 text-sm">
                         <div className="flex justify-between text-white/80">
-                          <span>Room ({nights} night{nights > 1 ? 's' : ''})</span>
-                          <span>R{roomTotal.toFixed(2)}</span>
+                          <span>Event Registration</span>
+                          <span>R{baseEventCost.toFixed(2)}</span>
                         </div>
                         {addOnTotal > 0 && (
                           <div className="flex justify-between text-white/80">
-                            <span>Add-ons</span>
+                            <span>Additional Services</span>
                             <span>R{addOnTotal.toFixed(2)}</span>
                           </div>
                         )}
-                        <div className="flex justify-between text-white/80">
-                          <span>Taxes & Fees</span>
-                          <span>R{taxes.toFixed(2)}</span>
-                        </div>
+                        {donationAmount > 0 && (
+                          <div className="flex justify-between text-white/80">
+                            <span>Donation</span>
+                            <span>R{donationAmount.toFixed(2)}</span>
+                          </div>
+                        )}
+                        {processingFee > 0 && (
+                          <div className="flex justify-between text-white/80">
+                            <span>Processing Fee</span>
+                            <span>R{processingFee.toFixed(2)}</span>
+                          </div>
+                        )}
                         <div className="border-t border-white/20 pt-2 flex justify-between text-lg font-bold">
                           <span className="text-white">Total</span>
                           <span className="text-gradient">R{total.toFixed(2)}</span>
@@ -930,7 +952,7 @@ function BookingPageContent() {
                       <div className="bg-blue-500/10 border border-blue-400/30 rounded-lg p-4">
                         <div className="flex items-center space-x-2 text-blue-300 text-sm">
                           <Shield className="w-4 h-4" />
-                          <span>Free cancellation until 24 hours before check-in</span>
+                          <span>Free registration updates until event date</span>
                         </div>
                       </div>
                     )}

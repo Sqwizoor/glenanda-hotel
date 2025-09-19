@@ -1,123 +1,129 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Clock, 
-  Send, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  Send,
   MessageSquare,
-  Globe,
-  Zap,
+  Heart,
   Users,
-  Shield,
-  Sparkles,
+  Church,
   Calendar,
   ArrowRight,
-  CheckCircle
+  CheckCircle,
+  Cross,
+  HandHeart
 } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
 
 const contactMethods = [
   {
     icon: Phone,
-    title: "Quantum Communication",
-    description: "Instant neural-link communication with our AI concierge",
-    contact: "+1 (555) QUANTUM",
-    availability: "24/7 Neural Network"
+    title: "Call Us",
+    description: "Speak directly with our church office for immediate assistance",
+    contact: "+27 76 207 3299",
+    availability: "Mon-Fri: 8AM-6PM, Sat: 9AM-4PM"
   },
   {
     icon: Mail,
-    title: "Holographic Mail",
-    description: "Send us a message through our holographic communication system",
-    contact: "info@glowsuite.future",
-    availability: "Response within 1 quantum cycle"
-  },
-  {
-    icon: Globe,
-    title: "Virtual Reality Meet",
-    description: "Schedule a VR meeting with our hospitality specialists",
-    contact: "VR Portal: glowsuite.vr",
-    availability: "Available 24/7"
+    title: "Email Us",
+    description: "Send us a message and we'll respond within 24 hours",
+    contact: "info@elijahchurchofchrist.org",
+    availability: "Response within 24 hours"
   },
   {
     icon: MessageSquare,
-    title: "AI Chat Support",
-    description: "Chat with our advanced AI assistant for instant help",
-    contact: "Live Chat Available",
-    availability: "Always Online"
+    title: "WhatsApp",
+    description: "Connect with us instantly through WhatsApp for prayer requests",
+    contact: "+27 76 207 3299",
+    availability: "Available 24/7"
+  },
+  {
+    icon: MapPin,
+    title: "Visit Us",
+    description: "Come worship with us at our church location",
+    contact: "Johannesburg, South Africa",
+    availability: "Sunday Service: 10:00 AM"
   }
 ];
 
-const locations = [
+const ministries = [
   {
-    city: "Neo Tokyo",
-    address: "2089 Quantum Boulevard, Sky District",
-    coordinates: "35.6762°N, 139.6503°E",
-    specialties: ["Main Hub", "Quantum Computing Center", "Holographic Labs"]
+    name: "Prayer Ministry",
+    description: "Need prayer? We're here to pray with you and for you.",
+    icon: Heart,
+    contact: "prayer@elijahchurchofchrist.org"
   },
   {
-    city: "New Angeles",
-    address: "777 Future Avenue, Cloud City Level 50",
-    coordinates: "34.0522°N, 118.2437°W",
-    specialties: ["AI Research Center", "Neural Interface Hub", "Guest Experience Lab"]
+    name: "Pastoral Care",
+    description: "Connect with our pastors for spiritual guidance and counseling",
+    icon: Heart,
+    contact: "pastor@elijahchurchofchrist.org"
   },
   {
-    city: "Neo Singapore",
-    address: "888 Digital Marina, Cyber Bay",
-    coordinates: "1.3521°N, 103.8198°E",
-    specialties: ["Sustainability Center", "Eco-Tech Innovation", "Green Energy Hub"]
-  }
-];
-
-const departments = [
-  {
-    name: "Guest Relations",
-    description: "General inquiries and guest support",
+    name: "Outreach Ministry",
+    description: "Join our street ministry and community service programs",
     icon: Users,
-    contact: "guests@glowsuite.future"
+    contact: "outreach@elijahchurchofchrist.org"
   },
   {
-    name: "Reservations",
-    description: "Booking and room reservations",
-    icon: Calendar,
-    contact: "reservations@glowsuite.future"
+    name: "Youth Ministry",
+    description: "Youth programs, leadership development, and mentorship",
+    icon: Church,
+    contact: "youth@elijahchurchofchrist.org"
+  }
+];
+
+const serviceSchedule = [
+  {
+    day: "Sunday",
+    time: "10:00 AM",
+    service: "Main Worship Service",
+    description: "Life-changing worship, powerful preaching, and healing prayer"
   },
   {
-    name: "Technical Support",
-    description: "AI and quantum system assistance",
-    icon: Zap,
-    contact: "tech@glowsuite.future"
+    day: "Wednesday",
+    time: "7:00 PM",
+    service: "Bible Study & Prayer",
+    description: "Deep dive into God's Word and intercessory prayer"
   },
   {
-    name: "Security",
-    description: "Privacy and security inquiries",
-    icon: Shield,
-    contact: "security@glowsuite.future"
+    day: "Friday",
+    time: "6:00 PM",
+    service: "Youth Ministry",
+    description: "Leadership development and fellowship for young people"
+  },
+  {
+    day: "Saturday",
+    time: "9:00 AM",
+    service: "Street Outreach",
+    description: "Serving the homeless and vulnerable in our community"
   }
 ];
 
 const faqs = [
   {
-    question: "How does the quantum room personalization work?",
-    answer: "Our quantum systems analyze your preferences, biometric data, and behavioral patterns to create a completely personalized environment that adapts in real-time to your needs."
+    question: "How can I become a member of Elijah Church of Christ?",
+    answer: "We welcome everyone! Attend our Sunday service, complete our membership class, and commit to our church covenant. Contact us to learn more about the process."
   },
   {
-    question: "Is the holographic concierge available 24/7?",
-    answer: "Yes! Our AI-powered holographic concierge never sleeps and can assist you with any request, from room service to complex travel arrangements, at any time."
+    question: "Do you offer counseling services?",
+    answer: "Yes, our pastoral care team provides biblical counseling for various life challenges including marriage, family issues, addiction, and spiritual growth."
   },
   {
-    question: "What security measures protect my neural data?",
-    answer: "We use quantum encryption and advanced biometric security to protect all guest data. Your neural patterns and personal information are stored in isolated quantum vaults with military-grade protection."
+    question: "How can I get involved in ministry?",
+    answer: "We have various ministry opportunities including outreach, youth ministry, worship team, and community service. Contact our ministry coordinators to get involved."
   },
   {
-    question: "Can I customize my room's AI personality?",
-    answer: "Absolutely! You can choose from dozens of AI personalities or even create a custom one that matches your preferences and communication style."
+    question: "What should I expect at a Sunday service?",
+    answer: "Our services include powerful worship, biblical preaching, prayer ministry, and fellowship. We focus on life transformation through God's Word and the Holy Spirit."
   }
 ];
 
@@ -127,26 +133,18 @@ export default function ContactPage() {
     email: "",
     subject: "",
     message: "",
-    department: "general"
+    ministry: "general"
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
     setIsSubmitting(false);
     setSubmitted(true);
   };
@@ -159,38 +157,42 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="pt-20">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative py-32 overflow-hidden">
-        <motion.div
-          style={{ y }}
-          className="absolute inset-0 z-0"
-        >
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-500/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
-        </motion.div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
+  <section className="py-24 bg-gradient-to-br from-emerald-50 via-white to-teal-50">
+        <div className="max-w-7xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
             className="space-y-8"
           >
-            <h1 className="text-5xl md:text-7xl font-bold text-gradient font-['Orbitron'] mb-6">
-              CONNECT WITH US
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white shadow border border-emerald-200 text-emerald-700 text-sm font-medium">
+              <Church className="w-4 h-4 mr-2" /> Connect With Us
+            </div>
+
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
+              Get In Touch With
+              <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent"> Elijah Church</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/80 max-w-4xl mx-auto leading-relaxed">
-              Reach out through our quantum communication channels. Our AI-powered 
-              support team is ready to assist you with any questions about your 
-              futuristic luxury experience.
+
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              We're here to pray with you, support you, and help you grow in your relationship with Jesus Christ.
+              Reach out to us through any of our contact methods below.
             </p>
+
+            <div className="bg-emerald-100 border-l-4 border-emerald-500 p-6 rounded-r-lg max-w-2xl mx-auto">
+              <p className="text-gray-800 italic text-center">
+                "Come to me, all you who are weary and burdened, and I will give you rest."
+              </p>
+              <p className="text-emerald-700 font-semibold text-center mt-2">- Matthew 11:28</p>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Contact Methods */}
-      <section className="py-32 border-b border-white/10">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -198,11 +200,11 @@ export default function ContactPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-bold text-gradient font-['Orbitron'] mb-8">
-              COMMUNICATION CHANNELS
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+              Ways to Connect
             </h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              Choose your preferred method of communication from our advanced digital channels.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Choose the best way to reach us. We're always ready to listen and help.
             </p>
           </motion.div>
 
@@ -214,26 +216,22 @@ export default function ContactPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.2, duration: 0.8 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ y: -5 }}
               >
-                <Card className="glass-morphism neon-border h-full hover:bg-white/10 transition-all duration-500">
+                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300">
                   <CardContent className="p-8 text-center space-y-6">
-                    <motion.div
-                      className="w-16 h-16 mx-auto rounded-full bg-blue-500/20 flex items-center justify-center"
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.8 }}
-                    >
-                      <method.icon className="w-8 h-8 text-blue-400" />
-                    </motion.div>
-                    <h3 className="text-xl font-bold text-white font-['Orbitron']">
+                    <div className="w-16 h-16 mx-auto rounded-full bg-emerald-100 flex items-center justify-center">
+                      <method.icon className="w-8 h-8 text-emerald-600" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900">
                       {method.title}
                     </h3>
-                    <p className="text-white/70 text-sm leading-relaxed">
+                    <p className="text-gray-600 text-sm leading-relaxed">
                       {method.description}
                     </p>
                     <div className="space-y-2">
-                      <div className="text-blue-400 font-semibold">{method.contact}</div>
-                      <div className="text-white/60 text-xs">{method.availability}</div>
+                      <div className="text-emerald-600 font-semibold">{method.contact}</div>
+                      <div className="text-gray-500 text-xs">{method.availability}</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -243,20 +241,20 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section className="py-32">
+      {/* Contact Form & Ministries */}
+      <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16">
-            {/* Form */}
+            {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="glass-morphism neon-border">
+              <Card className="border-0 shadow-lg">
                 <CardHeader>
-                  <CardTitle className="text-3xl font-bold text-gradient font-['Orbitron'] text-center">
-                    Send Quantum Message
+                  <CardTitle className="text-3xl font-bold text-gray-900 text-center">
+                    Send Us a Message
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-8">
@@ -264,21 +262,21 @@ export default function ContactPage() {
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <label className="block text-white/80 text-sm font-medium mb-2">
-                            Name
+                          <label className="block text-gray-700 text-sm font-medium mb-2">
+                            Full Name
                           </label>
                           <Input
                             name="name"
                             value={formData.name}
                             onChange={handleInputChange}
                             placeholder="Your full name"
-                            className="glass-morphism border-white/20 text-white placeholder:text-white/50"
+                            className="border-gray-300 focus:border-emerald-500 focus:ring-emerald-500"
                             required
                           />
                         </div>
                         <div>
-                          <label className="block text-white/80 text-sm font-medium mb-2">
-                            Email
+                          <label className="block text-gray-700 text-sm font-medium mb-2">
+                            Email Address
                           </label>
                           <Input
                             name="email"
@@ -286,31 +284,33 @@ export default function ContactPage() {
                             value={formData.email}
                             onChange={handleInputChange}
                             placeholder="your@email.com"
-                            className="glass-morphism border-white/20 text-white placeholder:text-white/50"
+                            className="border-gray-300 focus:border-emerald-500 focus:ring-emerald-500"
                             required
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-white/80 text-sm font-medium mb-2">
-                          Department
+                        <label className="block text-gray-700 text-sm font-medium mb-2">
+                          Ministry Interest
                         </label>
                         <select
-                          name="department"
-                          value={formData.department}
+                          name="ministry"
+                          value={formData.ministry}
                           onChange={handleInputChange}
-                          className="w-full h-9 rounded-md border border-white/20 bg-transparent px-3 py-1 text-white text-sm transition-colors focus:outline-none focus:ring-1 focus:ring-blue-400"
+                          className="w-full h-10 rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500"
                         >
-                          <option value="general" className="bg-gray-900">General Inquiry</option>
-                          <option value="reservations" className="bg-gray-900">Reservations</option>
-                          <option value="technical" className="bg-gray-900">Technical Support</option>
-                          <option value="security" className="bg-gray-900">Security</option>
+                          <option value="general">General Inquiry</option>
+                          <option value="prayer">Prayer Request</option>
+                          <option value="pastoral">Pastoral Care</option>
+                          <option value="outreach">Outreach Ministry</option>
+                          <option value="youth">Youth Ministry</option>
+                          <option value="membership">Church Membership</option>
                         </select>
                       </div>
 
                       <div>
-                        <label className="block text-white/80 text-sm font-medium mb-2">
+                        <label className="block text-gray-700 text-sm font-medium mb-2">
                           Subject
                         </label>
                         <Input
@@ -318,22 +318,22 @@ export default function ContactPage() {
                           value={formData.subject}
                           onChange={handleInputChange}
                           placeholder="Brief subject line"
-                          className="glass-morphism border-white/20 text-white placeholder:text-white/50"
+                          className="border-gray-300 focus:border-emerald-500 focus:ring-emerald-500"
                           required
                         />
                       </div>
 
                       <div>
-                        <label className="block text-white/80 text-sm font-medium mb-2">
+                        <label className="block text-gray-700 text-sm font-medium mb-2">
                           Message
                         </label>
                         <textarea
                           name="message"
                           value={formData.message}
                           onChange={handleInputChange}
-                          placeholder="Your message here..."
+                          placeholder="Share your prayer request, question, or message..."
                           rows={6}
-                          className="w-full rounded-md border border-white/20 bg-transparent px-3 py-2 text-white text-sm transition-colors placeholder:text-white/50 focus:outline-none focus:ring-1 focus:ring-blue-400 resize-none"
+                          className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-gray-900 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none"
                           required
                         />
                       </div>
@@ -341,17 +341,17 @@ export default function ContactPage() {
                       <Button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full cyber-button text-lg py-6 group"
+                        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-lg py-6 group"
                       >
                         {isSubmitting ? (
                           <>
-                            <Zap className="mr-2 h-5 w-5 animate-pulse" />
-                            Transmitting...
+                            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                            Sending...
                           </>
                         ) : (
                           <>
-                            <Send className="mr-2 h-5 w-5 group-hover:animate-pulse" />
-                            Send Quantum Message
+                            <Send className="mr-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                            Send Message
                             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                           </>
                         )}
@@ -368,17 +368,17 @@ export default function ContactPage() {
                         animate={{ scale: 1 }}
                         transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
                       >
-                        <CheckCircle className="w-16 h-16 text-green-400 mx-auto" />
+                        <CheckCircle className="w-16 h-16 text-green-500 mx-auto" />
                       </motion.div>
-                      <h3 className="text-2xl font-bold text-white">Message Transmitted!</h3>
-                      <p className="text-white/70">
-                        Your quantum message has been successfully transmitted. 
-                        Our AI team will respond within one quantum cycle.
+                      <h3 className="text-2xl font-bold text-gray-900">Message Sent!</h3>
+                      <p className="text-gray-600">
+                        Thank you for reaching out. We'll respond to your message within 24 hours.
+                        If this is a prayer request, know that we're praying for you right now.
                       </p>
                       <Button
                         onClick={() => setSubmitted(false)}
                         variant="outline"
-                        className="cyber-button"
+                        className="border-emerald-200 text-emerald-700 hover:bg-emerald-50"
                       >
                         Send Another Message
                       </Button>
@@ -388,39 +388,40 @@ export default function ContactPage() {
               </Card>
             </motion.div>
 
-            {/* Contact Info & Departments */}
+            {/* Ministries & Service Times */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="space-y-8"
             >
-              {/* Departments */}
-              <Card className="glass-morphism neon-border">
+              {/* Ministries */}
+              <Card className="border-0 shadow-lg">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-gradient font-['Orbitron']">
-                    Departments
+                  <CardTitle className="text-2xl font-bold text-gray-900 flex items-center">
+                    <Heart className="w-6 h-6 mr-2 text-emerald-600" />
+                    Connect With Ministries
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  {departments.map((dept, index) => (
+                  {ministries.map((ministry, index) => (
                     <motion.div
-                      key={dept.name}
+                      key={ministry.name}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1 }}
                       viewport={{ once: true }}
-                      className="flex items-start space-x-4 p-4 rounded-lg hover:bg-white/5 transition-colors"
+                      className="flex items-start space-x-4 p-4 rounded-lg hover:bg-emerald-50 transition-colors"
                     >
-                      <dept.icon className="w-6 h-6 text-blue-400 mt-1" />
+                      <ministry.icon className="w-6 h-6 text-emerald-600 mt-1" />
                       <div>
-                        <h4 className="font-semibold text-white">{dept.name}</h4>
-                        <p className="text-white/60 text-sm mb-2">{dept.description}</p>
-                        <a 
-                          href={`mailto:${dept.contact}`}
-                          className="text-blue-400 text-sm hover:text-blue-300 transition-colors"
+                        <h4 className="font-semibold text-gray-900">{ministry.name}</h4>
+                        <p className="text-gray-600 text-sm mb-2">{ministry.description}</p>
+                        <a
+                          href={`mailto:${ministry.contact}`}
+                          className="text-emerald-600 text-sm hover:text-emerald-700 transition-colors"
                         >
-                          {dept.contact}
+                          {ministry.contact}
                         </a>
                       </div>
                     </motion.div>
@@ -428,33 +429,34 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
 
-              {/* Operating Hours */}
-              <Card className="glass-morphism neon-border">
+              {/* Service Schedule */}
+              <Card className="border-0 shadow-lg">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-gradient font-['Orbitron'] flex items-center">
-                    <Clock className="w-6 h-6 mr-2" />
-                    Quantum Hours
+                  <CardTitle className="text-2xl font-bold text-gray-900 flex items-center">
+                    <Clock className="w-6 h-6 mr-2 text-emerald-600" />
+                    Service Times
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-white/80">AI Concierge</span>
-                      <span className="text-green-400 font-semibold">24/7 Online</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-white/80">Human Support</span>
-                      <span className="text-blue-400">6:00 AM - 11:00 PM PST</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-white/80">VR Meetings</span>
-                      <span className="text-purple-400">24/7 Available</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-white/80">Emergency Support</span>
-                      <span className="text-red-400">Always Active</span>
-                    </div>
-                  </div>
+                  {serviceSchedule.map((service, index) => (
+                    <motion.div
+                      key={service.service}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="p-4 rounded-lg hover:bg-emerald-50 transition-colors"
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <h4 className="font-semibold text-gray-900">{service.service}</h4>
+                        <div className="text-right">
+                          <div className="text-emerald-600 font-semibold">{service.day}</div>
+                          <div className="text-gray-600 text-sm">{service.time}</div>
+                        </div>
+                      </div>
+                      <p className="text-gray-600 text-sm">{service.description}</p>
+                    </motion.div>
+                  ))}
                 </CardContent>
               </Card>
             </motion.div>
@@ -462,63 +464,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Locations */}
-      <section className="py-32 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-6xl font-bold text-gradient font-['Orbitron'] mb-8">
-              GLOBAL LOCATIONS
-            </h2>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto">
-              Visit our quantum facilities around the world for in-person consultations and experiences.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {locations.map((location, index) => (
-              <motion.div
-                key={location.city}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2, duration: 0.8 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <Card className="glass-morphism neon-border h-full hover:bg-white/10 transition-all duration-500">
-                  <CardContent className="p-8 space-y-6">
-                    <div className="text-center">
-                      <MapPin className="w-12 h-12 text-blue-400 mx-auto mb-4" />
-                      <h3 className="text-2xl font-bold text-white font-['Orbitron'] mb-2">
-                        {location.city}
-                      </h3>
-                      <p className="text-white/70 mb-2">{location.address}</p>
-                      <p className="text-blue-400 text-sm font-mono">{location.coordinates}</p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <h4 className="text-white/80 font-semibold">Specialties:</h4>
-                      {location.specialties.map((specialty, i) => (
-                        <div key={i} className="flex items-center space-x-2 text-sm text-white/60">
-                          <Sparkles className="w-3 h-3 text-yellow-400" />
-                          <span>{specialty}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* FAQ Section */}
-      <section className="py-32 border-t border-white/10">
+      <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -526,11 +473,11 @@ export default function ContactPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-bold text-gradient font-['Orbitron'] mb-8">
-              QUANTUM FAQ
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+              Frequently Asked Questions
             </h2>
-            <p className="text-xl text-white/70">
-              Frequently asked questions about our futuristic technology and services.
+            <p className="text-xl text-gray-600">
+              Common questions about our church and ministries.
             </p>
           </motion.div>
 
@@ -543,12 +490,12 @@ export default function ContactPage() {
                 transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card className="glass-morphism neon-border hover:bg-white/10 transition-all duration-300">
+                <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300">
                   <CardContent className="p-8">
-                    <h3 className="text-xl font-semibold text-white mb-4 font-['Orbitron']">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">
                       {faq.question}
                     </h3>
-                    <p className="text-white/70 leading-relaxed">
+                    <p className="text-gray-600 leading-relaxed">
                       {faq.answer}
                     </p>
                   </CardContent>
@@ -560,7 +507,7 @@ export default function ContactPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 border-t border-white/10">
+  <section className="py-24 bg-gradient-to-r from-emerald-600 to-teal-600">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -569,22 +516,51 @@ export default function ContactPage() {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <h2 className="text-5xl md:text-7xl font-bold text-gradient font-['Orbitron'] mb-8">
-              READY TO CONNECT?
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              Ready to Join Our Church Family?
             </h2>
-            
-            <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto">
-              Don&apos;t wait for the future - experience it today. Book your quantum suite 
-              and step into tomorrow.
+
+            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+              Come experience the transforming power of God's love. Join us this Sunday for worship,
+              fellowship, and life-changing ministry.
             </p>
 
-            <Link href="/booking">
-              <Button size="lg" className="cyber-button text-lg px-12 py-6 group">
-                <Calendar className="mr-2 h-5 w-5 group-hover:animate-pulse" />
-                Book Your Experience
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Link href="/services">
+                <Button size="lg" className="bg-white text-emerald-600 hover:bg-gray-100 px-10 py-6 rounded-xl font-semibold">
+                  <Calendar className="mr-2 h-5 w-5" />
+                  View Service Times
+                </Button>
+              </Link>
+
+              <Link href="/partnership">
+                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-10 py-6 rounded-xl font-semibold">
+                  <HandHeart className="mr-2 h-5 w-5" />
+                  Support Our Ministry
+                </Button>
+              </Link>
+            </div>
+
+            {/* Contact Info */}
+            <div className="pt-8 space-y-4 text-white/80">
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <div className="flex items-center gap-2">
+                  <Phone className="w-4 h-4" />
+                  <span>+27 76 207 3299</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Mail className="w-4 h-4" />
+                  <span>info@elijahchurchofchrist.org</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4" />
+                  <span>Johannesburg, South Africa</span>
+                </div>
+              </div>
+              <p className="text-sm">
+                We love hearing from you! Reach out anytime for prayer, support, or to learn more about our church.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>

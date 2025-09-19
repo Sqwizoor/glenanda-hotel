@@ -11,9 +11,10 @@ import { cn } from "@/lib/utils";
 
 const navigation = [
 	{ name: "Home", href: "/" },
-	{ name: "Services", href: "/services" },
-	{ name: "Gallery", href: "/gallery" },
 	{ name: "About", href: "/about" },
+	{ name: "Ministry", href: "/services" },
+	{ name: "Gallery", href: "/gallery" },
+	{ name: "Partnership", href: "/partnership" },
 	{ name: "Contact", href: "/contact" },
 ];
 
@@ -38,11 +39,11 @@ export default function Navigation() {
 					>
 						<Link href="/" className="flex items-center">
 							<OptimizedImage
-								src="/logo.jpeg"
-								alt="Glenanda Hotel Logo"
-								width={160}
-								height={80}
-								className="h-14 w-auto object-cover rounded-md ring-1 ring-gray-200 hover:scale-[1.03] transition-transform duration-200"
+								src="/loggi.png"
+								alt="Elijah Church of Christ Logo"
+								width={260}
+								height={130}
+								className="h-[5.2rem] w-auto object-cover hover:scale-[1.03] transition-transform duration-200"
 								priority
 							/>
 						</Link>
@@ -97,25 +98,25 @@ export default function Navigation() {
 								className="group"
 								whileHover={{ scale: 1.1 }}
 								whileTap={{ scale: 0.95 }}
-								aria-label="Call Glenanda Hotel"
+								aria-label="Call Church"
 							>
-								<div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow">
+															<div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow">
 									<Phone className="w-5 h-5 text-white" />
 								</div>
 							</motion.a>
 							<Button
 								asChild
-								size="sm"
-								className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-6 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+															size="sm"
+															className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-6 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
 							>
 								<a
-									href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20book%20a%20stay."
+									href="https://wa.me/27762073299?text=Hi%20Elijah%20Church%20of%20Christ%2C%20I'd%20like%20to%20join%20your%20service."
 									target="_blank"
 									rel="noopener noreferrer"
 									className="flex items-center"
 								>
 									<MessageCircle className="w-4 h-4 mr-2" />
-									Book Stay
+									Join Service
 								</a>
 							</Button>
 						</motion.div>
@@ -129,7 +130,7 @@ export default function Navigation() {
 							whileHover={{ scale: 1.1 }}
 							whileTap={{ scale: 0.95 }}
 						>
-							<div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow">
+														<div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow">
 								<Phone className="w-4 h-4 text-white" />
 							</div>
 						</motion.a>
@@ -195,7 +196,7 @@ export default function Navigation() {
 									</a>
 									<a
 										href="tel:+27762073299"
-										className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow"
+																			className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow"
 									>
 										<Phone className="w-6 h-6 text-white" />
 									</a>
@@ -206,13 +207,13 @@ export default function Navigation() {
 									onClick={() => setIsOpen(false)}
 								>
 									<a
-										href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20book%20a%20stay."
+										href="https://wa.me/27762073299?text=Hi%20Elijah%20Church%20of%20Christ%2C%20I'd%20like%20to%20join%20your%20service."
 										target="_blank"
 										rel="noopener noreferrer"
 										className="flex items-center"
 									>
 										<MessageCircle className="w-5 h-5 mr-2" />
-										Book Stay
+										Join Service
 									</a>
 								</Button>
 							</motion.div>

@@ -42,172 +42,172 @@ const scaleIn: Variants = {
   show: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
 };
 
-// Map real images from /public to each room (ensuring variety)
+// Church facilities and spaces for events and ministry
 const roomTypes = [
   {
     id: 1,
-    name: "Quantum Luxury Suite",
-    price: 2089,
-    originalPrice: 2500,
-  image: "/room14.jpeg",
-    category: "Premium",
-    size: "85 m²",
-    guests: 2,
-    beds: 1,
-    description: "Experience the pinnacle of futuristic luxury with quantum-enhanced amenities and AI-powered personalization.",
+    name: "Main Sanctuary",
+    price: 0,
+    originalPrice: 0,
+  image: "/poolpit.jpeg",
+    category: "Worship",
+    size: "200 m²",
+    guests: 300,
+    beds: 0,
+    description: "Our beautiful main sanctuary for worship services, weddings, and special events with state-of-the-art sound and lighting.",
     features: [
-      "Holographic Entertainment System",
-      "Neural Interface Climate Control",
-      "Quantum Memory Foam Bed",
-      "360° Virtual Reality Windows",
-      "AI Personal Assistant",
-      "Biometric Security Access"
+      "Professional Sound System",
+      "Stage Lighting & AV Equipment",
+      "Comfortable Seating for 300",
+      "Air Conditioning & Heating",
+      "Accessible Design",
+      "Parking Available"
     ],
     amenities: [
-      { icon: Wifi, name: "Quantum WiFi 7.0" },
-      { icon: Monitor, name: "Holographic Display" },
-      { icon: Zap, name: "Wireless Charging Zone" },
-      { icon: Star, name: "5-Star Service" }
+      { icon: Users, name: "300 Capacity" },
+      { icon: Monitor, name: "AV Equipment" },
+      { icon: Zap, name: "Sound System" },
+      { icon: Star, name: "Premium Venue" }
     ],
     rating: 4.9,
     reviews: 847
   },
   {
     id: 2,
-    name: "Cyberpunk Penthouse",
-    price: 3500,
-    originalPrice: 4200,
-  image: "/room11.jpeg",
-    category: "Elite",
+    name: "Fellowship Hall",
+    price: 150,
+    originalPrice: 200,
+  image: "/croud6.jpeg",
+    category: "Events",
     size: "150 m²",
-    guests: 4,
-    beds: 2,
-    description: "Ultimate cyberpunk experience with panoramic city views and cutting-edge technology integration.",
+    guests: 150,
+    beds: 0,
+    description: "Perfect for community meals, meetings, workshops, and fellowship gatherings with full kitchen access.",
     features: [
-      "360° City View Dome",
-      "Quantum Gaming Station",
-      "Smart Glass Walls",
-      "Levitating Furniture",
-      "Personal Teleportation Pod",
-      "Advanced Biometric Spa"
+      "Commercial Kitchen Access",
+      "Flexible Seating Arrangements",
+      "Sound System Included",
+      "Tables & Chairs Available",
+      "Parking & Easy Access",
+      "Restroom Facilities"
     ],
     amenities: [
-      { icon: Wifi, name: "Neural Network Access" },
-      { icon: Monitor, name: "Holographic Concierge" },
-      { icon: Zap, name: "Quantum Power Core" },
-      { icon: Star, name: "Elite Status" }
+      { icon: Users, name: "150 Capacity" },
+      { icon: Monitor, name: "Presentation Ready" },
+      { icon: Zap, name: "Kitchen Access" },
+      { icon: Star, name: "Community Space" }
     ],
     rating: 5.0,
     reviews: 423
   },
   {
     id: 3,
-    name: "Neo-Tokyo Standard",
-    price: 1200,
-    originalPrice: 1500,
-  image: "/room6.jpeg",
-    category: "Standard",
-    size: "45 m²",
-    guests: 2,
-    beds: 1,
-    description: "Sleek and modern with essential futuristic amenities for the tech-savvy traveler.",
+    name: "Children's Ministry Room",
+    price: 75,
+    originalPrice: 100,
+  image: "/helping6.jpeg",
+    category: "Ministry",
+    size: "80 m²",
+    guests: 50,
+    beds: 0,
+    description: "Dedicated space for children's programs, Sunday school, and youth activities with age-appropriate facilities.",
     features: [
-      "Smart Mirror Interface",
-      "Voice-Controlled Environment",
-      "Digital Art Gallery",
-      "Automated Room Service",
-      "Mood Lighting System",
-      "Virtual Reality Entertainment"
+      "Child-Safe Environment",
+      "Educational Materials",
+      "Play Area & Toys",
+      "Restroom Facilities",
+      "Supervision Areas",
+      "Activity Stations"
     ],
     amenities: [
-      { icon: Wifi, name: "High-Speed Quantum" },
-      { icon: Monitor, name: "Smart Display" },
-      { icon: Zap, name: "Wireless Everything" },
-      { icon: Star, name: "Premium Service" }
+      { icon: Users, name: "50 Children" },
+      { icon: Monitor, name: "Educational Tools" },
+      { icon: Zap, name: "Safe Environment" },
+      { icon: Star, name: "Family Friendly" }
     ],
     rating: 4.7,
     reviews: 1205
   },
   {
     id: 4,
-    name: "Space Station Pod",
-    price: 890,
-    originalPrice: 1200,
-  image: "/room9.jpeg",
-    category: "Compact",
-    size: "25 m²",
-    guests: 1,
-    beds: 1,
-    description: "Compact yet luxurious space-age pod with all essential amenities for solo travelers.",
+    name: "Prayer Room",
+    price: 0,
+    originalPrice: 0,
+  image: "/pastor3.jpeg",
+    category: "Prayer",
+    size: "30 m²",
+    guests: 20,
+    beds: 0,
+    description: "Quiet sanctuary for personal prayer, counseling sessions, and small group meetings.",
     features: [
-      "Capsule Sleep Technology",
-      "Compact Hologram System",
-      "Space-Efficient Design",
-      "Zero-Gravity Relaxation",
-      "Personal AI Companion",
-      "Efficient Resource Management"
+      "Peaceful Atmosphere",
+      "Comfortable Seating",
+      "Bible & Study Materials",
+      "Sound Privacy",
+      "Natural Lighting",
+      "Accessible Entry"
     ],
     amenities: [
-      { icon: Wifi, name: "Satellite Connection" },
-      { icon: Monitor, name: "Compact Display" },
-      { icon: Zap, name: "Energy Efficient" },
-      { icon: Star, name: "Quality Assured" }
+      { icon: Users, name: "Intimate Setting" },
+      { icon: Monitor, name: "Study Resources" },
+      { icon: Zap, name: "Quiet Space" },
+      { icon: Star, name: "Spiritual Focus" }
     ],
     rating: 4.5,
     reviews: 892
   },
   {
     id: 5,
-    name: "Executive Nexus",
-    price: 2800,
-    originalPrice: 3300,
-  image: "/room5.jpeg",
+    name: "Conference Room",
+    price: 100,
+    originalPrice: 125,
+  image: "/board2.jpeg",
     category: "Business",
-    size: "120 m²",
-    guests: 3,
-    beds: 2,
-    description: "Perfect for business travelers with advanced meeting capabilities and productivity enhancement.",
+    size: "60 m²",
+    guests: 25,
+    beds: 0,
+    description: "Professional meeting space perfect for business meetings, training sessions, and community gatherings.",
     features: [
-      "Holographic Meeting Room",
-      "Quantum Computing Access",
-      "Neural Productivity Interface",
-      "Advanced Security Protocols",
-      "Multi-Dimensional Workspace",
-      "Executive Concierge Service"
+      "Conference Table Setup",
+      "Presentation Equipment",
+      "Whiteboard & Flipchart",
+      "High-Speed Internet",
+      "Refreshment Area",
+      "Business Parking"
     ],
     amenities: [
-      { icon: Wifi, name: "Business Network" },
-      { icon: Monitor, name: "Multi-Screen Setup" },
-      { icon: Zap, name: "Power Management" },
-      { icon: Star, name: "Executive Service" }
+      { icon: Users, name: "25 Person Boardroom" },
+      { icon: Monitor, name: "Presentation Ready" },
+      { icon: Zap, name: "Business Internet" },
+      { icon: Star, name: "Professional Space" }
     ],
     rating: 4.8,
     reviews: 634
   },
   {
     id: 6,
-    name: "Family Galaxy Suite",
-    price: 3200,
-    originalPrice: 3800,
-  image: "/room12.jpeg",
-    category: "Family",
-    size: "180 m²",
-    guests: 6,
-    beds: 3,
-    description: "Spacious family-friendly suite with entertainment and safety features for all ages.",
+    name: "Community Garden",
+    price: 50,
+    originalPrice: 75,
+  image: "/general3.jpeg",
+    category: "Outdoor",
+    size: "500 m²",
+    guests: 100,
+    beds: 0,
+    description: "Beautiful outdoor space for community events, picnics, and outdoor ministry activities.",
     features: [
-      "Kids Holographic Playground",
-      "Family Entertainment Center",
-      "Multi-Zone Climate Control",
-      "Child Safety AI Monitoring",
-      "Educational VR Systems",
-      "Family Concierge Service"
+      "Scenic Garden Setting",
+      "Outdoor Pavilion",
+      "BBQ Facilities",
+      "Playground Area",
+      "Accessible Pathways",
+      "Parking Available"
     ],
     amenities: [
-      { icon: Wifi, name: "Family-Safe Network" },
-      { icon: Monitor, name: "Multiple Displays" },
-      { icon: Zap, name: "High Capacity Power" },
-      { icon: Star, name: "Family-First Service" }
+      { icon: Users, name: "100 Person Capacity" },
+      { icon: Monitor, name: "Outdoor Events" },
+      { icon: Zap, name: "BBQ Facilities" },
+      { icon: Star, name: "Natural Beauty" }
     ],
     rating: 4.9,
     reviews: 721
@@ -215,13 +215,13 @@ const roomTypes = [
 ];
 
 const filterOptions = [
-  { value: "all", label: "All Rooms" },
-  { value: "premium", label: "Premium" },
-  { value: "elite", label: "Elite" },
-  { value: "standard", label: "Standard" },
-  { value: "compact", label: "Compact" },
+  { value: "all", label: "All Facilities" },
+  { value: "worship", label: "Worship" },
+  { value: "events", label: "Events" },
+  { value: "ministry", label: "Ministry" },
+  { value: "prayer", label: "Prayer" },
   { value: "business", label: "Business" },
-  { value: "family", label: "Family" }
+  { value: "outdoor", label: "Outdoor" }
 ];
 
 export default function RoomsPage() {
@@ -268,11 +268,11 @@ export default function RoomsPage() {
             className="space-y-8"
           >
             <h1 className="text-5xl md:text-7xl font-bold text-gradient font-['Orbitron'] mb-6">
-              QUANTUM SUITES
+              CHURCH FACILITIES
             </h1>
             <p className="text-xl md:text-2xl text-white/80 max-w-4xl mx-auto leading-relaxed">
-              Choose from our collection of technologically advanced accommodations, 
-              each designed to provide an unparalleled glimpse into the future of hospitality.
+              Discover our beautiful facilities designed for worship, fellowship, and community service. 
+              Each space is thoughtfully prepared to serve our congregation and community.
             </p>
           </motion.div>
         </div>
@@ -355,8 +355,8 @@ export default function RoomsPage() {
                       className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[11px] font-medium tracking-wide"
                     >
                       <span className="px-2 py-1 rounded-md bg-black/50 backdrop-blur text-white/80">{room.size}</span>
-                      <span className="px-2 py-1 rounded-md bg-black/50 backdrop-blur text-white/80">{room.guests} Guests</span>
-                      <span className="px-2 py-1 rounded-md bg-black/50 backdrop-blur text-white/80">{room.beds} Bed{room.beds>1?'s':''}</span>
+                      <span className="px-2 py-1 rounded-md bg-black/50 backdrop-blur text-white/80">{room.guests} Capacity</span>
+                      <span className="px-2 py-1 rounded-md bg-black/50 backdrop-blur text-white/80">{room.category}</span>
                     </motion.div>
 
                     {/* Category Badge */}
@@ -411,12 +411,12 @@ export default function RoomsPage() {
                         className="text-right"
                       >
                         <div className="text-2xl font-bold text-gradient">
-                          R{room.price}
+                          {room.price === 0 ? "FREE" : `R${room.price}`}
                         </div>
                         <div className="text-sm text-white/50 line-through">
-                          R{room.originalPrice}
+                          {room.originalPrice > 0 ? `R${room.originalPrice}` : ""}
                         </div>
-                        <div className="text-xs text-white/60">per night</div>
+                        <div className="text-xs text-white/60">{room.price === 0 ? "Community Use" : "per hour"}</div>
                       </motion.div>
                     </CardTitle>
                   </CardHeader>
@@ -488,10 +488,10 @@ export default function RoomsPage() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: 0.15 }}
                     >
-                      <Link href={`/booking?room=${room.id}`} className="flex-1">
+                      <Link href={`/booking?event=${room.id}`} className="flex-1">
                         <Button className="w-full cyber-button group">
                           <Calendar className="w-4 h-4 mr-2 group-hover:animate-pulse" />
-                          Book Now
+                          {room.price === 0 ? "Reserve" : "Book Now"}
                         </Button>
                       </Link>
                       <Button variant="outline" className="cyber-button group">
@@ -517,30 +517,30 @@ export default function RoomsPage() {
             className="space-y-8"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-gradient font-['Orbitron'] mb-8">
-              QUANTUM SERVICES
+              ADDITIONAL SERVICES
             </h2>
             
             <p className="text-xl text-white/70 max-w-3xl mx-auto mb-12">
-              Enhance your stay with our revolutionary add-on services designed 
-              to push the boundaries of luxury and technology.
+              Enhance your event with our additional services designed to make your gathering 
+              more comfortable and spiritually enriching.
             </p>
 
             <div className="grid md:grid-cols-3 gap-8 mb-16">
         {[
                 {
-                  title: "Holographic Butler",
-                  description: "Personal AI assistant available 24/7",
-          price: "+R200/night"
+                  title: "Catering Services",
+                  description: "Professional meal preparation and service",
+          price: "+R25/person"
                 },
                 {
-                  title: "Quantum Spa Access",
-                  description: "Advanced healing and relaxation chambers",
-          price: "+R350/stay"
+                  title: "Audio/Visual Support",
+                  description: "Technical support for presentations and events",
+          price: "+R150/hour"
                 },
                 {
-                  title: "Neural Gastronomy",
-                  description: "AI-curated molecular cuisine experience",
-          price: "+R150/meal"
+                  title: "Event Coordination",
+                  description: "Professional planning and setup assistance",
+          price: "+R200/event"
                 }
               ].map((service, index) => (
                 <motion.div
@@ -565,7 +565,7 @@ export default function RoomsPage() {
             <Link href="/booking">
               <Button size="lg" className="cyber-button text-lg px-12 py-6 group">
                 <Calendar className="mr-2 h-5 w-5 group-hover:animate-pulse" />
-                Start Your Journey
+                Plan Your Event
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>

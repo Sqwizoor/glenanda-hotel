@@ -26,213 +26,218 @@ import {
   Users,
   Clock,
   Truck,
-  RotateCcw
+  RotateCcw,
+  Book,
+  PenTool,
+  BookOpen,
+  Music,
+  Shirt
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 
 const categories = [
-  { id: "all", name: "All Products" },
-  { id: "cleansers", name: "Cleansers" },
-  { id: "serums", name: "Serums" },
-  { id: "moisturizers", name: "Moisturizers" },
-  { id: "suncare", name: "Sun Care" },
-  { id: "treatments", name: "Treatments" }
+  { id: "all", name: "All Resources" },
+  { id: "bibles", name: "Bibles & Study" },
+  { id: "books", name: "Christian Books" },
+  { id: "merchandise", name: "Church Merchandise" },
+  { id: "music", name: "Worship Music" },
+  { id: "resources", name: "Ministry Resources" }
 ];
 
 const products = [
   {
-    id: "gentle-foam-cleanser",
-    category: "cleansers",
-    name: "Gentle Foam Cleanser",
-    subtitle: "Daily purifying cleanser",
-    price: 32,
+    id: "study-bible",
+    category: "bibles",
+    name: "Life Application Study Bible",
+    subtitle: "Complete study notes and commentary",
+    price: 85,
     originalPrice: null,
-    rating: 4.8,
-    reviews: 124,
-    bestseller: true,
-    newProduct: false,
-    icon: Droplets,
-    image: "/algae.jpg",
-  description: "A gentle yet effective foam cleanser that removes impurities while maintaining skin&apos;s natural moisture barrier.",
-    benefits: [
-      "Removes makeup and impurities",
-      "Maintains skin moisture",
-      "Suitable for all skin types",
-      "pH balanced formula"
-    ],
-    ingredients: ["Glycerin", "Chamomile Extract", "Aloe Vera", "Panthenol"],
-    skinTypes: ["Normal", "Dry", "Sensitive"],
-    usage: "Morning & Evening"
-  },
-  {
-    id: "vitamin-c-serum",
-    category: "serums", 
-    name: "Vitamin C Brightening Serum",
-    subtitle: "20% L-Ascorbic Acid",
-    price: 68,
-    originalPrice: 85,
     rating: 4.9,
-    reviews: 298,
+    reviews: 324,
     bestseller: true,
     newProduct: false,
-    icon: Sun,
-    image: "/algae2.jpg",
-  description: "High-potency vitamin C serum that brightens, protects, and stimulates collagen production for radiant skin.",
+    icon: BookOpen,
+    image: "/room14.jpeg",
+  description: "Comprehensive study Bible with extensive notes, articles, and application insights for deeper understanding of God's Word.",
     benefits: [
-      "Brightens skin tone",
-      "Reduces dark spots",
-      "Antioxidant protection",
-      "Stimulates collagen"
+      "Complete study notes",
+      "Character profiles",
+      "Book introductions",
+      "Application insights"
     ],
-    ingredients: ["L-Ascorbic Acid", "Vitamin E", "Ferulic Acid", "Hyaluronic Acid"],
-    skinTypes: ["Normal", "Dry", "Combination"],
-    usage: "Morning"
+    ingredients: ["Full NIV Text", "Study Notes", "Maps", "Concordance"],
+    skinTypes: ["Beginners", "Students", "Leaders"],
+    usage: "Daily Study"
   },
   {
-    id: "hyaluronic-moisturizer",
-    category: "moisturizers",
-    name: "Hyaluronic Acid Moisturizer",
-    subtitle: "24-hour hydration",
-    price: 45,
+    id: "devotional-journal",
+    category: "books",
+    name: "Daily Devotional Journal",
+    subtitle: "365 days of spiritual growth",
+    price: 25,
     originalPrice: null,
     rating: 4.7,
-    reviews: 186,
+    reviews: 89,
     bestseller: false,
     newProduct: true,
-    icon: Droplets,
-    image: "/algae3.jpg",
-  description: "Lightweight moisturizer with multiple types of hyaluronic acid for deep, long-lasting hydration.",
+    icon: PenTool,
+    image: "/room2.jpeg",
+  description: "A beautifully designed journal with daily devotionals, scripture readings, and space for personal reflections.",
     benefits: [
-      "Deep hydration",
-      "Plumps fine lines",
-      "Lightweight formula",
-      "Non-comedogenic"
+      "365 daily devotionals",
+      "Scripture readings",
+      "Reflection space",
+      "Beautiful design"
     ],
-    ingredients: ["Hyaluronic Acid", "Ceramides", "Niacinamide", "Peptides"],
-    skinTypes: ["All skin types"],
-    usage: "Morning & Evening"
+    ingredients: ["Premium Paper", "Leather Cover", "Ribbon Marker", "Daily Readings"],
+    skinTypes: ["Individuals", "Families", "Groups"],
+    usage: "Daily Reflection"
   },
   {
-    id: "retinol-treatment",
-    category: "treatments",
-    name: "Retinol Renewal Treatment",
-    subtitle: "0.5% Encapsulated Retinol",
-    price: 78,
+    id: "christian-book",
+    category: "books",
+    name: "The Purpose Driven Life",
+    subtitle: "What on Earth Am I Here For?",
+    price: 35,
     originalPrice: null,
-    rating: 4.6,
+    rating: 4.8,
+    reviews: 156,
+    bestseller: true,
+    newProduct: false,
+    icon: Book,
+    image: "/room3.jpeg",
+  description: "A bestselling Christian book that helps readers discover God's purpose for their lives through biblical principles.",
+    benefits: [
+      "Discover your purpose",
+      "Biblical wisdom",
+      "Practical application",
+      "Life-changing insights"
+    ],
+    ingredients: ["Biblical Teaching", "Personal Reflection", "Spiritual Growth", "Life Application"],
+    skinTypes: ["Seekers", "Believers", "Leaders"],
+    usage: "Personal Study"
+  },
+  {
+    id: "worship-cd",
+    category: "music",
+    name: "Worship & Praise Collection",
+    subtitle: "Modern worship songs and hymns",
+    price: 45,
+    originalPrice: null,
+    rating: 4.8,
     reviews: 142,
     bestseller: false,
     newProduct: false,
-    icon: Moon,
-    image: "/algae-peel.jpg",
-  description: "Advanced retinol treatment that reduces fine lines, improves texture, and promotes cell turnover.",
+    icon: Music,
+    image: "/room4.jpeg",
+  description: "A beautiful collection of modern worship songs and traditional hymns to inspire your spiritual journey and deepen your connection with God.",
     benefits: [
-      "Reduces fine lines",
-      "Improves skin texture",
-      "Evens skin tone",
-      "Promotes cell renewal"
+      "Modern worship songs",
+      "Traditional hymns",
+      "Inspiring lyrics",
+      "High-quality recording"
     ],
-    ingredients: ["Encapsulated Retinol", "Squalane", "Peptides", "Bakuchiol"],
-    skinTypes: ["Normal", "Combination", "Mature"],
-    usage: "Evening only"
+    ingredients: ["Worship Songs", "Hymns", "Praise Music", "Spiritual Lyrics"],
+    skinTypes: ["Worshippers", "Musicians", "Families"],
+    usage: "Daily Worship"
   },
   {
-    id: "daily-sunscreen",
-    category: "suncare",
-    name: "Daily Defense Sunscreen SPF 50",
-    subtitle: "Broad spectrum protection",
-    price: 38,
+    id: "church-tshirt",
+    category: "merchandise",
+    name: "Elijah Church of Christ T-Shirt",
+    subtitle: "Matthew 7:24 - Built on the Rock",
+    price: 25,
     originalPrice: null,
     rating: 4.8,
     reviews: 267,
     bestseller: true,
     newProduct: false,
-    icon: Shield,
-    image: "/alagepels2.jpg",
-  description: "Lightweight, non-greasy sunscreen with broad spectrum SPF 50 protection and antioxidants.",
+    icon: Shirt,
+    image: "/room5.jpeg",
+  description: "Comfortable cotton t-shirt featuring the Elijah Church of Christ logo and our foundational scripture from Matthew 7:24.",
     benefits: [
-      "SPF 50 protection",
-      "Antioxidant rich",
-      "Lightweight formula",
-      "No white cast"
+      "Comfortable cotton",
+      "Church logo design",
+      "Biblical message",
+      "Quality printing"
     ],
-    ingredients: ["Zinc Oxide", "Titanium Dioxide", "Vitamin E", "Green Tea"],
-    skinTypes: ["All skin types"],
-    usage: "Morning"
+    ingredients: ["100% Cotton", "Screen Print", "Church Logo", "Biblical Verse"],
+    skinTypes: ["Members", "Visitors", "Families"],
+    usage: "Daily Wear"
   },
   {
-    id: "niacinamide-serum",
-    category: "serums",
-    name: "Niacinamide Pore Refining Serum",
-    subtitle: "10% Niacinamide + Zinc",
-    price: 28,
-    originalPrice: null,
-    rating: 4.5,
-    reviews: 89,
-    bestseller: false,
-    newProduct: true,
-    icon: Zap,
-    image: "/algaepel.jpg",
-  description: "Concentrated niacinamide serum that minimizes pores, controls oil, and improves skin texture.",
-    benefits: [
-      "Minimizes pores",
-      "Controls oil production",
-      "Improves texture",
-      "Reduces redness"
-    ],
-    ingredients: ["Niacinamide", "Zinc PCA", "Hyaluronic Acid", "Allantoin"],
-    skinTypes: ["Oily", "Combination", "Acne-prone"],
-    usage: "Morning & Evening"
-  },
-  {
-    id: "eye-cream",
-    category: "treatments",
-    name: "Rejuvenating Eye Cream",
-    subtitle: "Peptides + Caffeine",
-    price: 52,
-    originalPrice: null,
-    rating: 4.4,
-    reviews: 73,
-    bestseller: false,
-    newProduct: false,
-    icon: Sparkles,
-    image: "/aesthetic.jpg",
-  description: "Rich eye cream with peptides and caffeine to reduce puffiness, dark circles, and fine lines.",
-    benefits: [
-      "Reduces puffiness",
-      "Diminishes dark circles",
-      "Smooths fine lines",
-      "Firms eye area"
-    ],
-    ingredients: ["Peptides", "Caffeine", "Retinyl Palmitate", "Ceramides"],
-    skinTypes: ["All skin types"],
-    usage: "Morning & Evening"
-  },
-  {
-    id: "exfoliating-toner",
-    category: "treatments",
-    name: "AHA/BHA Exfoliating Toner",
-    subtitle: "Gentle chemical exfoliation",
+    id: "ministry-guide",
+    category: "resources",
+    name: "Ministry Leadership Guide",
+    subtitle: "Practical tools for church leaders",
     price: 35,
     originalPrice: null,
     rating: 4.7,
+    reviews: 89,
+    bestseller: false,
+    newProduct: true,
+    icon: Users,
+    image: "/room6.jpeg",
+  description: "Comprehensive guide for church leaders with practical tools, biblical principles, and real-world applications for effective ministry.",
+    benefits: [
+      "Leadership principles",
+      "Ministry tools",
+      "Biblical foundation",
+      "Practical applications"
+    ],
+    ingredients: ["Leadership Training", "Ministry Tools", "Biblical Study", "Practical Guides"],
+    skinTypes: ["Pastors", "Leaders", "Volunteers"],
+    usage: "Ministry Training"
+  },
+  {
+    id: "prayer-journal",
+    category: "resources",
+    name: "Prayer & Intercession Journal",
+    subtitle: "365 days of prayer guidance",
+    price: 20,
+    originalPrice: null,
+    rating: 4.6,
+    reviews: 73,
+    bestseller: false,
+    newProduct: false,
+    icon: PenTool,
+    image: "/room7.jpeg",
+  description: "Dedicated prayer journal with daily prayer prompts, scripture references, and space to record answered prayers and spiritual insights.",
+    benefits: [
+      "Daily prayer prompts",
+      "Scripture references",
+      "Prayer tracking",
+      "Spiritual growth"
+    ],
+    ingredients: ["Prayer Prompts", "Scripture References", "Reflection Space", "Prayer Tracking"],
+    skinTypes: ["Believers", "Prayer Warriors", "Seekers"],
+    usage: "Daily Prayer"
+  },
+  {
+    id: "bible-study-kit",
+    category: "resources",
+    name: "Complete Bible Study Kit",
+    subtitle: "Tools for deep biblical study",
+    price: 65,
+    originalPrice: null,
+    rating: 4.9,
     reviews: 156,
     bestseller: false,
     newProduct: false,
-    icon: Leaf,
-    image: "/neww.jpg",
-  description: "Gentle exfoliating toner with AHA and BHA to remove dead skin cells and unclog pores.",
+    icon: BookOpen,
+    image: "/room9.jpeg",
+  description: "Complete Bible study kit including study Bible, concordance, commentary, and workbook for comprehensive biblical understanding.",
     benefits: [
-      "Gentle exfoliation",
-      "Unclogs pores",
-      "Smooths texture",
-      "Brightens skin"
+      "Study Bible included",
+      "Concordance & commentary",
+      "Study workbook",
+      "Comprehensive tools"
     ],
-    ingredients: ["Glycolic Acid", "Salicylic Acid", "Witch Hazel", "Aloe Vera"],
-    skinTypes: ["Normal", "Oily", "Combination"],
-    usage: "Evening (2-3x per week)"
+    ingredients: ["Study Bible", "Concordance", "Commentary", "Workbook"],
+    skinTypes: ["Students", "Teachers", "Leaders"],
+    usage: "Bible Study"
   }
 ];
 
@@ -363,7 +368,7 @@ export default function ProductsPage() {
                 whileHover={{ scale: 1.05 }}
               >
                 <Crown className="w-4 h-4 mr-2" />
-                Premium Skincare Collection
+                Premium Church Resources Collection
               </motion.div>
 
               <motion.h1 
@@ -386,7 +391,7 @@ export default function ProductsPage() {
                     repeat: Number.POSITIVE_INFINITY 
                   }}
                 >
-                  Skin Journey
+                  Spiritual Journey
                 </motion.span>
               </motion.h1>
               
@@ -396,8 +401,8 @@ export default function ProductsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.6 }}
               >
-                Discover our revolutionary collection of clinically-proven skincare products, 
-                each formulated with premium ingredients for visible results.
+                Discover our comprehensive collection of church resources, 
+                each designed to deepen your faith and strengthen your spiritual walk.
               </motion.p>
 
               <motion.div 
@@ -411,7 +416,7 @@ export default function ProductsPage() {
                   className="relative bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-8 py-6 rounded-2xl shadow-2xl hover:shadow-emerald-500/25 transition-all duration-300 group text-lg"
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
-                  Shop Collection
+                  Shop Resources
                   <motion.div
                     className="absolute inset-0 rounded-2xl bg-white/20"
                     initial={{ scale: 0, opacity: 0 }}
@@ -426,7 +431,7 @@ export default function ProductsPage() {
                   className="border-2 border-emerald-200 text-emerald-700 hover:bg-emerald-50 px-8 py-6 rounded-2xl text-lg group"
                 >
                   <Eye className="w-5 h-5 mr-2" />
-                  View Products
+                  View Resources
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </motion.div>
@@ -439,9 +444,9 @@ export default function ProductsPage() {
                 transition={{ duration: 1, delay: 1 }}
               >
                 {[
-                  { icon: Users, number: "50K+", label: "Happy Customers" },
+                  { icon: Users, number: "5K+", label: "Lives Impacted" },
                   { icon: Award, number: "98%", label: "Satisfaction Rate" },
-                  { icon: Sparkles, number: "25+", label: "Premium Products" }
+                  { icon: Sparkles, number: "50+", label: "Church Resources" }
                 ].map((stat, index) => (
                   <motion.div
                     key={index}
@@ -526,7 +531,7 @@ export default function ProductsPage() {
 
               {/* Floating Elements */}
               <motion.div
-                className="absolute -top-6 -right-6 w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full flex items-center justify-center shadow-lg"
+                className="absolute -top-6 -right-6 w-12 h-12 bg-gradient-to-br from-emerald-400 to-teal-400 rounded-full flex items-center justify-center shadow-lg"
                 animate={{ 
                   rotate: 360,
                   scale: [1, 1.2, 1]
@@ -587,7 +592,7 @@ export default function ProductsPage() {
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
                 type="text"
-                placeholder="Search for products, ingredients, or skin concerns..."
+                placeholder="Search for Bibles, books, music, or ministry resources..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-200 bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-700 placeholder-gray-400 shadow-lg"
@@ -665,7 +670,7 @@ export default function ProductsPage() {
                categories.find(c => c.id === selectedCategory)?.name}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Professional-grade formulations trusted by skincare experts worldwide.
+              Faith-building resources trusted by believers worldwide to deepen their relationship with God.
             </p>
           </motion.div>
 
@@ -777,7 +782,7 @@ export default function ProductsPage() {
                       {/* Enhanced Rating */}
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
-                          <div className="flex items-center bg-yellow-50 px-2 py-1 rounded-lg">
+                          <div className="flex items-center bg-emerald-50 px-2 py-1 rounded-lg">
                             {[...Array(5)].map((_, i) => (
                               <motion.div
                                 key={i}
@@ -913,26 +918,26 @@ export default function ProductsPage() {
             className="space-y-8"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
-              Start Your Skincare Journey
+              Start Your Spiritual Journey
             </h2>
             
             <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-              Not sure which products are right for you? Book a consultation with our 
-              skincare experts for personalized recommendations.
+              Not sure which resources are right for you? Contact our ministry team 
+              for personalized recommendations on your spiritual growth journey.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link href="/contact">
                 <Button size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-lg px-12 py-6 rounded-full group">
                   <Sparkles className="mr-2 h-5 w-5" />
-                  Get Product Recommendations
+                  Get Resource Recommendations
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
               
               <Link href="/services">
                 <Button variant="outline" size="lg" className="border-emerald-500 text-emerald-600 hover:bg-emerald-50 text-lg px-12 py-6 rounded-full">
-                  View Services
+                  View Ministry Services
                 </Button>
               </Link>
             </div>

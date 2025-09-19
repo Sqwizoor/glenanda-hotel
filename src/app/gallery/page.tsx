@@ -8,24 +8,24 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Filter, X } from "lucide-react";
 
-// Hotel gallery media using real images from /public
+// Church gallery media showcasing ministry work and community
 const mediaData: Array<{ id: string; type: "image"; src: string; alt: string; tags: string[] }> = [
-  { id: "g1", type: "image", src: "/room14.jpeg", alt: "Signature suite wide angle", tags: ["rooms", "ambience"] },
-  { id: "g2", type: "image", src: "/room11.jpeg", alt: "Modern lounge seating", tags: ["rooms", "design"] },
-  { id: "g3", type: "image", src: "/room6.jpeg", alt: "Executive bedding detail", tags: ["rooms", "details"] },
-  { id: "g4", type: "image", src: "/room5.jpeg", alt: "Cozy deluxe corner", tags: ["rooms", "ambience"] },
-  { id: "g5", type: "image", src: "/room12.jpeg", alt: "Family suite spacious layout", tags: ["rooms", "family"] },
-  { id: "g6", type: "image", src: "/hallway.jpeg", alt: "Soft lit hallway", tags: ["ambience", "design"] },
-  { id: "g7", type: "image", src: "/dining2.jpeg", alt: "Refined dining setup", tags: ["dining", "ambience"] },
-  { id: "g8", type: "image", src: "/dining4.jpeg", alt: "Casual breakfast table", tags: ["dining"] },
-  { id: "g9", type: "image", src: "/bath.jpeg", alt: "Modern bath finishes", tags: ["bath", "details"] },
-  { id: "g10", type: "image", src: "/bath2.jpeg", alt: "Bathroom basin design", tags: ["bath", "design"] },
-  { id: "g11", type: "image", src: "/bath4.jpeg", alt: "Shower enclosure clarity", tags: ["bath"] },
-  { id: "g12", type: "image", src: "/niceview.jpeg", alt: "Panoramic dusk view", tags: ["views", "ambience"] },
-  { id: "g13", type: "image", src: "/guests2.jpeg", alt: "Relaxed guest lounge moment", tags: ["people", "ambience"] },
+  { id: "g1", type: "image", src: "/poolpit.jpeg", alt: "Sunday worship at the pulpit", tags: ["worship", "sanctuary"] },
+  { id: "g2", type: "image", src: "/croud2.jpeg", alt: "Congregation in praise", tags: ["worship", "community"] },
+  { id: "g3", type: "image", src: "/helping6.jpeg", alt: "Children's ministry and serving together", tags: ["children", "ministry"] },
+  { id: "g4", type: "image", src: "/board2.jpeg", alt: "Leadership and discipleship meeting", tags: ["leadership", "fellowship"] },
+  { id: "g5", type: "image", src: "/helping9.jpeg", alt: "Street outreach ministry in action", tags: ["outreach", "ministry"] },
+  { id: "g6", type: "image", src: "/general3.jpeg", alt: "Fellowship after service", tags: ["fellowship", "events"] },
+  { id: "g7", type: "image", src: "/helping4.jpeg", alt: "Community meal service blessing families", tags: ["service", "outreach"] },
+  { id: "g8", type: "image", src: "/board.jpeg", alt: "Bible study group gathering", tags: ["bible", "study"] },
+  { id: "g9", type: "image", src: "/pastor3.jpeg", alt: "Counseling and prayer support", tags: ["restoration", "ministry", "counseling"] },
+  { id: "g10", type: "image", src: "/past1.jpeg", alt: "Prayer time and intercession", tags: ["prayer", "counseling"] },
+  { id: "g11", type: "image", src: "/main-pasto.jpeg", alt: "Healing prayer service", tags: ["healing", "prayer"] },
+  { id: "g12", type: "image", src: "/croud3.jpeg", alt: "Community worship and celebration", tags: ["community", "worship"] },
+  { id: "g13", type: "image", src: "/poolpit.jpeg", alt: "Apostle Elijah leading worship", tags: ["leadership", "worship"] },
 ];
 
-const allTags = ["all", "rooms", "dining", "bath", "ambience", "views", "design", "details", "family", "people"] as const;
+const allTags = ["all", "worship", "ministry", "outreach", "community", "prayer", "fellowship", "youth", "children", "bible", "healing", "service", "events", "leadership", "study", "counseling", "restoration", "sanctuary"] as const;
 
 type Tag = typeof allTags[number];
 
@@ -63,7 +63,7 @@ export default function GalleryPage() {
               transition={{ duration: 0.6 }}
               className="inline-flex items-center px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-200 mb-4"
             >
-              <Filter className="w-4 h-4 mr-2" /> Our Work
+              <Filter className="w-4 h-4 mr-2" /> Our Ministry
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -79,7 +79,7 @@ export default function GalleryPage() {
               transition={{ delay: 0.2 }}
               className="mt-4 text-gray-600 max-w-2xl mx-auto"
             >
-              Explore authentic spaces, textures, amenities and moods from Glenanda Hotel.
+              Witness the transformative power of faith through our ministry work, community outreach, and spiritual growth at Elijah Church of Christ.
             </motion.p>
           </div>
 
@@ -137,7 +137,7 @@ export default function GalleryPage() {
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-t from-black/50 via-black/0 to-transparent" />
                       <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
                         <Badge className="bg-emerald-500/90 text-white shadow">
-                          Photo
+                          Ministry
                         </Badge>
                         <Button size="sm" className="bg-white text-gray-900 hover:bg-gray-100" onClick={(e) => { e.preventDefault(); openLightbox(item.id); }}>
                           View

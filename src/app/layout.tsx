@@ -29,8 +29,8 @@ const exo2 = Exo_2({
 });
 
 export const metadata: Metadata = {
-  title: "Glenanda Hotel | Modern Comfort & Luxury Stays",
-  description: "Glenanda Hotel – contemporary rooms, refined dining, curated experiences. Book your stay: +27 76 207 3299",
+  title: "Elijah Church of Christ | Changing Lives Through Faith",
+  description: "Elijah Church of Christ – founded by Apostle Elijah. Healing ministry, street outreach, leadership development. Join us: +27 76 207 3299",
 };
 
 export default function RootLayout({
@@ -53,50 +53,50 @@ export default function RootLayout({
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Image
-                  src="/logo.jpeg"
-                  alt="Glenanda Hotel Logo"
-                  width={70}
-                  height={70}
-                  className="h-16 w-16 object-cover rounded-md shadow-sm ring-1 ring-gray-200"
+                  src="/loggi.png"
+                  alt="Elijah Church of Christ Logo"
+                  width={130}
+                  height={130}
+                  className="h-24 w-24 object-cover"
                 />
                 <div>
-                  <h3 className="text-xl font-semibold tracking-tight">Glenanda Hotel</h3>
-                  <p className="text-xs uppercase tracking-wide text-emerald-600 font-medium">Stay • Relax • Experience</p>
+                  <h3 className="text-xl font-semibold tracking-tight">Elijah Church of Christ</h3>
+                  <p className="text-xs uppercase tracking-wide text-emerald-600 font-medium">Faith • Hope • Love</p>
                 </div>
               </div>
-              <p className="text-sm text-gray-600 leading-relaxed max-w-xs">Modern boutique comfort with thoughtfully designed rooms, warm service, and elevated amenities for business & leisure travelers.</p>
+              <p className="text-sm text-gray-600 leading-relaxed max-w-xs">Built on the foundation of Jesus Christ. Changing lives through healing ministry, street outreach, and leadership development for a godly world.</p>
             </div>
             <div className="text-sm text-gray-700 space-y-2">
               <h4 className="font-semibold text-gray-900 mb-3 tracking-wide">Contact</h4>
               <p><span className="text-gray-500">Phone:</span> <a href="tel:+27762073299" className="font-medium hover:text-emerald-600 transition-colors">+27 76 207 3299</a></p>
-              <p><span className="text-gray-500">WhatsApp:</span> <a href="https://wa.me/27762073299" target="_blank" rel="noopener" className="font-medium hover:text-emerald-600">Chat Now</a></p>
-              <p><span className="text-gray-500">Email:</span> <a href="mailto:reservations@glenandahotel.co.za" className="font-medium hover:text-emerald-600">reservations@glenandahotel.co.za</a></p>
-              <p><span className="text-gray-500">Location:</span> Glenanda, Johannesburg, South Africa</p>
+              <p><span className="text-gray-500">WhatsApp:</span> <a href="https://wa.me/27762073299" target="_blank" rel="noopener" className="font-medium hover:text-emerald-600">Join Service</a></p>
+              <p><span className="text-gray-500">Email:</span> <a href="mailto:info@elijahchurchofchrist.org" className="font-medium hover:text-emerald-600">info@elijahchurchofchrist.org</a></p>
+              <p><span className="text-gray-500">Location:</span> Johannesburg, South Africa</p>
             </div>
             <div className="text-sm text-gray-700 space-y-2">
               <h4 className="font-semibold text-gray-900 mb-3 tracking-wide">Quick Links</h4>
               <ul className="space-y-1">
-                <li><a className="hover:text-emerald-600 transition-colors" href="/rooms">Rooms & Suites</a></li>
+                <li><a className="hover:text-emerald-600 transition-colors" href="/services">Ministry</a></li>
                 <li><a className="hover:text-emerald-600 transition-colors" href="/gallery">Gallery</a></li>
-                <li><a className="hover:text-emerald-600 transition-colors" href="/services">Amenities</a></li>
-                <li><a className="hover:text-emerald-600 transition-colors" href="/about">About Us</a></li>
+                <li><a className="hover:text-emerald-600 transition-colors" href="/partnership">Partnership</a></li>
+                <li><a className="hover:text-emerald-600 transition-colors" href="/about">About Apostle Elijah</a></li>
                 <li><a className="hover:text-emerald-600 transition-colors" href="/contact">Contact</a></li>
               </ul>
             </div>
             <div className="text-sm text-gray-700 space-y-4">
-              <h4 className="font-semibold text-gray-900 mb-3 tracking-wide">Stay Updated</h4>
-              <p className="text-sm text-gray-600">Get exclusive seasonal offers & insider updates.</p>
+              <h4 className="font-semibold text-gray-900 mb-3 tracking-wide">Stay Connected</h4>
+              <p className="text-sm text-gray-600">Join our church family and receive spiritual updates.</p>
               <form className="flex items-center space-x-2">
                 <input type="email" required placeholder="Email address" className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" />
-                <button type="submit" className="text-sm font-medium bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-md transition-colors">Subscribe</button>
+                <button type="submit" className="text-sm font-medium bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-md transition-colors">Join</button>
               </form>
-              <p className="text-xs text-gray-400">We respect your privacy. Unsubscribe anytime.</p>
+              <p className="text-xs text-gray-400">Your spiritual journey awaits. Unsubscribe anytime.</p>
             </div>
           </div>
           <div className="border-t border-gray-100">
             <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500">
-              <p>&copy; {new Date().getFullYear()} Glenanda Hotel. All rights reserved.</p>
-              <p className="mt-2 md:mt-0">Crafted for a refined South African stay experience.</p>
+              <p>&copy; {new Date().getFullYear()} Elijah Church of Christ. All rights reserved.</p>
+              <p className="mt-2 md:mt-0">Built on the foundation of Jesus Christ - Matthew 7:24</p>
             </div>
           </div>
         </footer>

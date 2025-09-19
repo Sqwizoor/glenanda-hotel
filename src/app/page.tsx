@@ -14,7 +14,12 @@ import {
   Shield,
   Heart,
   Award,
-  Crown
+  Crown,
+  Cross,
+  Users,
+  HandHeart,
+  BookOpen,
+  Church
 } from "lucide-react";
 import { useEffect, useRef, useState, useCallback, useMemo, type MouseEvent as ReactMouseEvent } from "react";
 import Link from "next/link";
@@ -88,6 +93,7 @@ const LightboxProvider = ({ children }: { children: React.ReactNode }) => {
                     alt={resultsMedia[index].alt}
                     fill
                     sizes="100vw"
+                    quality={95}
                     className="object-contain"
                     priority
                   />
@@ -152,7 +158,8 @@ function GalleryCarousel() {
                   alt={item.alt}
                   fill
                   sizes="(max-width:640px) 80vw, (max-width:768px) 55vw, (max-width:1024px) 40vw, 30vw"
-                  className="object-cover transition-all duration-700 group-hover:scale-105"
+                  quality={90}
+                  className="object-contain bg-black transition-all duration-700"
                   priority={idx < 2}
                 />
               ) : (
@@ -194,44 +201,44 @@ function GalleryCarousel() {
 
 const homeServices = [
   {
-    id: "deluxe-room",
-    title: "Deluxe Room",
-    subtitle: "Calm & contemporary",
-    duration: "Sleeps 2",
-    price: "From R1 250 / night",
-    popular: false,
-    image: "/room3.jpeg",
-    description: "Queen bed, rainfall shower, workspace, fast Wi‑Fi and curated local touches for a refined short stay."
-  },
-  {
-    id: "executive-room",
-    title: "Executive Room",
-    subtitle: "Extra space & comfort",
-    duration: "Sleeps 2",
-    price: "From R1 580 / night",
+    id: "ministry-healing",
+    title: "Healing Ministry",
+    subtitle: "Restoration & Hope",
+    duration: "Every Sunday",
+    price: "Free for All",
     popular: true,
-    image: "/room6.jpeg",
-    description: "Spacious layout, lounge corner, premium linens, smart TV streaming and evening turndown service."
+    image: "/pastor-action.jpeg",
+    description: "Experience God's healing power through prayer, laying of hands, and divine intervention. Witness testimonies of transformed lives."
   },
   {
-    id: "family-suite",
-    title: "Family Suite",
-    subtitle: "Ideal for longer stays",
-    duration: "Sleeps 3-4",
-    price: "From R1 980 / night",
+    id: "ministry-leadership",
+    title: "Leadership Development",
+    subtitle: "Future Leaders",
+    duration: "Monthly Program",
+    price: "Investment in Tomorrow",
     popular: true,
-    image: "/room10.jpeg",
-    description: "Separate lounge, flexible bedding configuration, mini fridge, and multi‑day comfort amenities."
+    image: "/board2.jpeg",
+    description: "Developing godly leaders for tomorrow. Character building, spiritual growth, and practical leadership skills rooted in Christ."
   },
   {
-    id: "panoramic-suite",
-    title: "Panoramic Suite",
-    subtitle: "Signature top-floor view",
-    duration: "Sleeps 2",
-    price: "From R2 450 / night",
+    id: "ministry-outreach",
+    title: "Street Outreach",
+    subtitle: "Changing Lives",
+    duration: "Weekly Missions",
+    price: "Heart for the Lost",
+    popular: true,
+    image: "/helping9.jpeg",
+    description: "Returning to the streets where Apostle Elijah once lived. Sharing hope, providing meals, and demonstrating Christ's love to the vulnerable."
+  },
+  {
+    id: "ministry-worship",
+    title: "Worship & Fellowship",
+    subtitle: "Spirit-filled Gathering",
+    duration: "Multiple Services",
+    price: "Come as You Are",
     popular: false,
-    image: "/niceview.jpeg",
-    description: "Expansive outlook, king bed, bespoke seating, artisan coffee setup and elevated bath experience."
+    image: "/croud3.jpeg",
+    description: "Authentic worship, powerful preaching, and genuine fellowship. Experience God's presence in a welcoming community atmosphere."
   }
 ];
 
@@ -244,17 +251,17 @@ type MediaItem =
   | { type: "video"; src: string; alt: string; poster?: string };
 
 const resultsMedia: MediaItem[] = [
-  { type: "image", src: "/room14.jpeg", alt: "Signature suite with natural light" },
-  { type: "image", src: "/room6.jpeg", alt: "Executive room bedding detail" },
-  { type: "image", src: "/room11.jpeg", alt: "Modern suite seating area" },
-  { type: "image", src: "/room5.jpeg", alt: "Cozy deluxe room ambiance" },
-  { type: "image", src: "/room12.jpeg", alt: "Family-friendly spacious setup" },
-  { type: "image", src: "/hallway.jpeg", alt: "Refined hallway lighting" },
-  { type: "image", src: "/dining2.jpeg", alt: "Dining space table setup" },
-  { type: "image", src: "/bath.jpeg", alt: "Bathroom finishes and fixtures" },
-  { type: "image", src: "/niceview.jpeg", alt: "Panoramic outdoor view at dusk" },
+  { type: "image", src: "/poolpit.jpeg", alt: "Worship at the pulpit" },
+  { type: "image", src: "/croud2.jpeg", alt: "Congregation in praise" },
+  { type: "image", src: "/croud3.jpeg", alt: "Spirit-filled worship service" },
+  { type: "image", src: "/board2.jpeg", alt: "Leadership and discipleship class" },
+  { type: "image", src: "/helping6.jpeg", alt: "Community outreach and serving" },
+  { type: "image", src: "/helping8.jpeg", alt: "Feeding program blessing the community" },
+  { type: "image", src: "/pastor3.jpeg", alt: "Prayer and counseling" },
+  { type: "image", src: "/general3.jpeg", alt: "Fellowship and connection" },
+  { type: "image", src: "/board.jpeg", alt: "Bible study and teaching" },
   // Example video item (uncomment to use):
-  // { type: "video", src: "/lobby-tour.mp4", alt: "Lobby walkthrough", poster: "/lobby-poster.jpg" },
+  // { type: "video", src: "/ministry-tour.mp4", alt: "Ministry walkthrough", poster: "/ministry-poster.jpg" },
 ];
 
 // Lightweight lazy video that only loads when near viewport
@@ -345,7 +352,7 @@ function Slideshow({ images, interval = 6000 }: { images: string[]; interval?: n
       {images.map((src, i) => (
         <motion.div
           key={src + i}
-          className="absolute inset-0"
+          className="absolute inset-0 bg-black"
           initial={{ opacity: 0 }}
           animate={{ opacity: i === index ? 1 : 0 }}
           transition={{ duration: 1.4, ease: 'easeInOut' }}
@@ -357,7 +364,8 @@ function Slideshow({ images, interval = 6000 }: { images: string[]; interval?: n
             fill
             priority={i === 0}
             sizes="100vw"
-            className="object-cover object-center will-change-transform"
+            quality={95}
+            className="object-contain object-center will-change-transform"
           />
         </motion.div>
       ))}
@@ -416,32 +424,36 @@ export default function HomePage() {
     <div className="overflow-hidden">
       {/* Floating Quick Action Bar */}
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[48] md:hidden">
-        <div className="flex items-center gap-3 px-4 py-3 rounded-full backdrop-blur-xl bg-white/70 shadow-lg shadow-emerald-900/10 border border-white/40">
-          <Link href="/rooms" className="flex flex-col items-center text-[10px] font-medium text-gray-700">
-            <div className="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow-md">R</div>
-            <span className="mt-1">Rooms</span>
+  <div className="flex items-center gap-3 px-4 py-3 rounded-full backdrop-blur-xl bg-white/70 shadow-lg shadow-emerald-900/10 border border-white/40">
+          <Link href="/services" className="flex flex-col items-center text-[10px] font-medium text-gray-700">
+            <div className="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow-md">
+              <Church className="w-5 h-5" />
+            </div>
+            <span className="mt-1">Ministry</span>
           </Link>
           <div className="w-px h-10 bg-gradient-to-b from-transparent via-emerald-300/50 to-transparent" />
           <a
-            href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20book."
+            href="https://wa.me/27762073299?text=Hi%20Elijah%20Church%20of%20Christ%2C%20I'd%20like%20to%20join%20your%20service."
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center text-[10px] font-medium text-gray-700"
           >
             <div className="w-10 h-10 rounded-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white flex items-center justify-center shadow-md">WA</div>
-            <span className="mt-1">Chat</span>
+            <span className="mt-1">Join Us</span>
           </a>
           <div className="w-px h-10 bg-gradient-to-b from-transparent via-emerald-300/50 to-transparent" />
           <Link href="/contact" className="flex flex-col items-center text-[10px] font-medium text-gray-700">
-            <div className="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center shadow-md">✉</div>
-            <span className="mt-1">Contact</span>
+            <div className="w-10 h-10 rounded-full bg-teal-500 text-white flex items-center justify-center shadow-md">
+              <HandHeart className="w-5 h-5" />
+            </div>
+            <span className="mt-1">Prayer</span>
           </Link>
         </div>
       </div>
       {/* Hero Section — clean minimalist with crossfade slideshow */}
       <section ref={heroRef} className="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
-        {/* Background slideshow */}
-        <Slideshow images={["/room14.jpeg","/room6.jpeg","/niceview.jpeg","/room11.jpeg"]} />
+  {/* Background slideshow */}
+  <Slideshow images={["/poolpit.jpeg","/croud2.jpeg","/board.jpeg","/helping4.jpeg"]} />
         {/* Overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.55),rgba(0,0,0,0.65))]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_60%)] mix-blend-overlay" />
@@ -452,15 +464,15 @@ export default function HomePage() {
           transition={{ duration:0.9, ease:[0.16,1,0.3,1] }}
           className="relative z-10 w-full px-4"
         >
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center">
             <motion.div
               className="inline-flex items-center space-x-2 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white/90 mb-8"
               initial={{ opacity:0, y:10 }}
               animate={{ opacity:1, y:0 }}
               transition={{ delay:0.3 }}
             >
-              <Sparkles className="w-4 h-4 text-emerald-300" />
-              <span className="text-[11px] tracking-[0.25em] font-medium">GLENANDA HOTEL</span>
+              <Cross className="w-4 h-4 text-emerald-300" />
+              <span className="text-[11px] tracking-[0.25em] font-medium">ELIJAH CHURCH OF CHRIST</span>
             </motion.div>
             <motion.h1
               initial={{ opacity:0, y:24 }}
@@ -468,16 +480,16 @@ export default function HomePage() {
               transition={{ delay:0.45, duration:0.9 }}
               className="font-semibold leading-[1.05] text-white text-4xl sm:text-5xl md:text-[4rem] md:leading-[1.05] tracking-tight"
             >
-              Rest. Work. Reset.
-              <span className="block mt-3 text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-amber-200 to-emerald-200 text-2xl md:text-3xl font-light tracking-wide">South Johannesburg Boutique Stay</span>
+              Changing Lives. Healing Hearts.
+              <span className="block mt-3 text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-emerald-200 text-2xl md:text-3xl font-light tracking-wide">Founded on the Rock of Jesus Christ</span>
             </motion.h1>
             <motion.p
               initial={{ opacity:0, y:20 }}
               animate={{ opacity:1, y:0 }}
               transition={{ delay:0.7, duration:0.7 }}
-              className="mt-8 text-white/80 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+              className="mt-8 text-white/80 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
             >
-              Quiet residential address • Curated suites • Fiber Wi‑Fi • Fast direct support. A calm base between meetings and weekend escapes.
+              "Without being kind to one another we can't please God" - Apostle Elijah. Join us as we serve the Lord through love, compassion, and transforming lives from the streets to the sanctuary.
             </motion.p>
             <motion.div
               initial={{ opacity:0, y:20 }}
@@ -485,15 +497,15 @@ export default function HomePage() {
               transition={{ delay:0.85, duration:0.6 }}
               className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
             >
-              <Link href="/rooms" className="group relative">
+              <Link href="/about" className="group relative">
                 <Button size="lg" className="rounded-full px-10 py-6 bg-emerald-600 hover:bg-emerald-500 text-white text-base shadow-lg shadow-emerald-900/30">
-                  View Rooms
+                  Our Story
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Button>
               </Link>
               <Link href="/contact">
                 <Button variant="outline" size="lg" className="rounded-full px-10 py-6 border-white/30 text-white hover:bg-white/10">
-                  Book Direct
+                  Join Us Sunday
                 </Button>
               </Link>
             </motion.div>
@@ -504,9 +516,9 @@ export default function HomePage() {
               className="mt-12 grid grid-cols-3 gap-8 max-w-md mx-auto text-left text-white/70"
             >
               {[
-                {label:'Parking', value:'Secure'},
-                {label:'Wi‑Fi', value:'Fiber'},
-                {label:'Support', value:'24/7'}
+                {label:'Foundation', value:'Matthew 7:24'},
+                {label:'Mission', value:'Healing'},
+                {label:'Heart', value:'Serving'}
               ].map(s => (
                 <div key={s.label} className="space-y-1">
                   <div className="text-[11px] uppercase tracking-wide text-white/40">{s.label}</div>
@@ -542,22 +554,22 @@ export default function HomePage() {
               variants={itemFadeUp}
               className="inline-block px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium mb-4"
             >
-        ✨ Refined Accommodation
+              ✨ Ministry & Outreach
             </motion.div>
             <motion.h2 
               variants={itemFadeUp} 
               className="text-4xl md:text-6xl font-bold text-gray-900 mb-6"
               whileInView={{ 
                 background: [
-          "linear-gradient(90deg, #065f46, #f59e0b)",
-          "linear-gradient(90deg, #f59e0b, #10b981)",
-          "linear-gradient(90deg, #10b981, #f59e0b)",
-          "linear-gradient(90deg, #f59e0b, #065f46)"
+                  "linear-gradient(90deg, #059669, #10b981)",
+                  "linear-gradient(90deg, #10b981, #14b8a6)",
+                  "linear-gradient(90deg, #14b8a6, #10b981)",
+                  "linear-gradient(90deg, #10b981, #059669)"
                 ]
               }}
               transition={{ duration: 4, repeat: Infinity }}
             >
-        Rooms & Suites
+              Our Ministry
             </motion.h2>
             <motion.p 
               variants={itemFadeUp} 
@@ -565,7 +577,7 @@ export default function HomePage() {
               whileInView={{ opacity: [0.8, 1, 0.8] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-        Choose from thoughtfully designed spaces offering calm aesthetics, premium bedding, fast Wi-Fi and subtle South African character.
+              Dedicated to changing lives, healing hearts, and producing future leaders for a godly world. Built on the foundation of Jesus Christ who died for our sins.
             </motion.p>
           </motion.div>
 
@@ -630,7 +642,7 @@ export default function HomePage() {
                           transition={{ delay: index * 0.1 + 0.5, type: "spring", stiffness: 200 }}
                         >
                           <Badge className="absolute top-4 right-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg">
-                            ⭐ Most Popular
+                            🙏 Core Ministry
                           </Badge>
                         </motion.div>
                       )}
@@ -690,12 +702,12 @@ export default function HomePage() {
                       >
                         <Button asChild className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 group shadow-lg hover:shadow-xl transition-all duration-300">
                           <a
-                            href={`https://wa.me/27762073299?text=${encodeURIComponent(`Hi Glenanda Hotel, I'd like to enquire about the ${service.title}.`)}`}
+                            href={`https://wa.me/27762073299?text=${encodeURIComponent(`Hi Elijah Church of Christ, I'd like to learn more about ${service.title}.`)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
                             <span className="flex items-center justify-center">
-                              Book This Room
+                              Learn More
                             </span>
                             <motion.span
                               animate={{ x: [0, 3, 0] }}
@@ -717,7 +729,7 @@ export default function HomePage() {
       </section>
 
       {/* Spaces & Atmosphere Section with Carousel & Lightbox */}
-      <section className="section-padding bg-white" id="spaces-atmosphere">
+      <section className="section-padding bg-white" id="ministry-gallery">
         <LightboxProvider>
           <div className="max-w-7xl mx-auto">
             <motion.div
@@ -728,10 +740,10 @@ export default function HomePage() {
               className="text-center mb-16"
             >
               <motion.h2 variants={itemFadeUp} className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                Spaces & Atmosphere
+                Ministry & Fellowship
               </motion.h2>
               <motion.p variants={itemFadeUp} className="text-xl text-gray-600">
-                A glimpse into our rooms, textures, natural light and calming design language.
+                Glimpses of our church community, worship spaces, and fellowship activities where lives are transformed.
               </motion.p>
             </motion.div>
             <GalleryCarousel />
@@ -739,8 +751,8 @@ export default function HomePage() {
         </LightboxProvider>
       </section>
 
-      {/* Why Choose Us Section */}
-      <section className="section-padding bg-gradient-to-br from-emerald-50 via-white to-teal-50">
+      {/* Why Join Us Section */}
+  <section className="section-padding bg-gradient-to-br from-emerald-50 via-white to-teal-50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             variants={containerStagger}
@@ -750,10 +762,10 @@ export default function HomePage() {
             className="text-center mb-16"
           >
             <motion.h2 variants={itemFadeUp} className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Why Stay With Us?
+              Why Join Our Church?
             </motion.h2>
             <motion.p variants={itemFadeUp} className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Blending understated style with warm South African hospitality and smart conveniences.
+              Built on the foundation of Jesus Christ, our ministry focuses on changing lives, healing, and producing future leaders for a godly world.
             </motion.p>
           </motion.div>
 
@@ -766,32 +778,32 @@ export default function HomePage() {
           >
             {[
               {
-                icon: Shield,
-                title: "Secure & Tranquil",
-                description: "24/7 monitored premises & calm residential setting",
-                stat: "24/7",
-                statLabel: "Security"
-              },
-              {
-                icon: Award,
-                title: "Quality Sleep",
-                description: "Premium bedding, blackout curtains & climate control",
-                stat: "High",
-                statLabel: "Comfort"
+                icon: Cross,
+                title: "Biblical Foundation",
+                description: "Built on Matthew 7:24 - the solid rock of Jesus Christ",
+                stat: "Mat 7:24",
+                statLabel: "Foundation"
               },
               {
                 icon: Heart,
-                title: "Thoughtful Amenities",
-                description: "Fast Wi‑Fi, artisan coffee, flexible workspaces",
-                stat: "Fast",
-                statLabel: "Connectivity"
+                title: "Healing Ministry",
+                description: "Experience God's healing power through prayer and faith",
+                stat: "Healing",
+                statLabel: "Hearts"
               },
               {
-                icon: Sparkles,
-                title: "Impeccably Clean",
-                description: "Professional housekeeping & fresh linen standards",
-                stat: "Daily",
-                statLabel: "Service"
+                icon: Users,
+                title: "Street Outreach",
+                description: "Reaching the lost and demonstrating Christ's love to all",
+                stat: "Weekly",
+                statLabel: "Outreach"
+              },
+              {
+                icon: Crown,
+                title: "Leadership Development",
+                description: "Producing future leaders for a better godly world",
+                stat: "Future",
+                statLabel: "Leaders"
               }
             ].map((feature, index) => (
               <motion.div key={feature.title} variants={itemFadeUp}>
@@ -802,7 +814,7 @@ export default function HomePage() {
                       whileHover={{ rotate: 360, scale: 1.1 }}
                       transition={{ duration: 0.8 }}
                     >
-                      <feature.icon className="w-full h-full text-emerald-500" />
+                      <feature.icon className="w-full h-full text-emerald-600" />
                       <div className="absolute inset-0 rounded-full bg-emerald-100 -z-10 group-hover:bg-emerald-200 transition-colors"></div>
                     </motion.div>
                     
@@ -831,7 +843,108 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Treatment Process */}
+      {/* Mission & Vision */}
+      <section className="section-padding bg-white">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            className="text-center mb-16"
+          >
+            <motion.h2 variants={itemFadeUp} className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              Our Mission & Vision
+            </motion.h2>
+            <motion.p variants={itemFadeUp} className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Rooted in Matthew 7:24, we exist to preach Christ, make disciples, and serve our city with compassion—building on the solid Rock.
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            className="grid md:grid-cols-2 gap-8"
+          >
+            <motion.div variants={itemFadeUp} className="p-8 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl border border-emerald-100">
+              <div className="flex items-center gap-3 mb-4">
+                <Cross className="w-6 h-6 text-emerald-600" />
+                <h3 className="text-2xl font-semibold text-gray-900">Mission</h3>
+              </div>
+              <p className="text-gray-700 leading-relaxed">
+                To proclaim the Gospel of Jesus Christ, heal the broken, and raise leaders who transform families and communities through love, faith, and service.
+              </p>
+              <ul className="mt-4 text-gray-700 space-y-2">
+                <li>• Preach Christ crucified and risen</li>
+                <li>• Equip believers for ministry</li>
+                <li>• Serve the poor and vulnerable</li>
+              </ul>
+            </motion.div>
+            <motion.div variants={itemFadeUp} className="p-8 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl border border-emerald-100">
+              <div className="flex items-center gap-3 mb-4">
+                <Crown className="w-6 h-6 text-emerald-700" />
+                <h3 className="text-2xl font-semibold text-gray-900">Vision</h3>
+              </div>
+              <p className="text-gray-700 leading-relaxed">
+                A vibrant Christ-centered church where lives are changed, families restored, and future leaders are released to impact the nations for God’s glory.
+              </p>
+              <ul className="mt-4 text-gray-700 space-y-2">
+                <li>• A house of prayer for all</li>
+                <li>• A training ground for leaders</li>
+                <li>• A beacon of hope in our city</li>
+              </ul>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Ministry Highlights */}
+      <section className="section-padding bg-gradient-to-br from-emerald-50 via-white to-teal-50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            className="text-center mb-16"
+          >
+            <motion.h2 variants={itemFadeUp} className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              Ministry Highlights
+            </motion.h2>
+            <motion.p variants={itemFadeUp} className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Ways we grow, serve, and witness Christ’s power together.
+            </motion.p>
+          </motion.div>
+          <motion.div
+            variants={containerStagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {[
+              { icon: Cross, title: "Evangelism", text: "Sharing Jesus in streets, homes, and workplaces." },
+              { icon: BookOpen, title: "Teaching", text: "Bible studies and discipleship tracks for all ages." },
+              { icon: Church, title: "Worship", text: "Spirit-led worship encounters centered on Christ." },
+              { icon: Users, title: "Youth & Kids", text: "Raising a generation that knows and follows God." },
+              { icon: HandHeart, title: "Compassion", text: "Feeding programs and practical care to the needy." },
+              { icon: Shield, title: "Prayer", text: "Intercession, counseling, and healing ministry." },
+            ].map((m, i) => (
+              <motion.div key={m.title} variants={itemFadeUp} whileHover={{ y: -6 }} className="p-6 bg-white rounded-xl border border-gray-100 shadow hover:shadow-lg transition-all">
+                <div className="w-12 h-12 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center mb-4">
+                  <m.icon className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{m.title}</h3>
+                <p className="text-gray-600">{m.text}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Church Journey Process */}
       <section className="section-padding skincare-gradient">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -842,10 +955,10 @@ export default function HomePage() {
             className="text-center mb-16"
           >
             <motion.h2 variants={itemFadeUp} className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Simple Booking Journey
+              Your Journey With Us
             </motion.h2>
             <motion.p variants={itemFadeUp} className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Reserve in minutes—arrive relaxed and ready to unwind.
+              Join our family of believers and experience transformation through Christ's love and community fellowship.
             </motion.p>
           </motion.div>
 
@@ -859,31 +972,31 @@ export default function HomePage() {
             {[
               {
                 step: "01",
-                title: "Explore Rooms",
-                description: "Browse categories & amenities that suit your stay",
+                title: "Visit Us",
+                description: "Come as you are to experience authentic worship",
                 icon: "�️",
-                duration: "2 min"
+                duration: "Sunday"
               },
               {
                 step: "02", 
-                title: "Select Dates",
-                description: "Choose check‑in / check‑out and guest count",
-                icon: "📅",
-                duration: "1 min"
+                title: "Connect",
+                description: "Meet our community and share your journey with us",
+                icon: "🤝",
+                duration: "Fellowship"
               },
               {
                 step: "03",
-                title: "Confirm & Secure",
-                description: "Instant WhatsApp / phone confirmation assistance",
+                title: "Grow",
+                description: "Participate in ministry, healing, and leadership development",
                 icon: "�",
-                duration: "5 min"
+                duration: "Weekly"
               },
               {
                 step: "04",
-                title: "Arrive & Unwind",
-                description: "Seamless check‑in & personalized welcome touch",
-                icon: "🌅",
-                duration: "Stay"
+                title: "Serve",
+                description: "Join our outreach and help change lives in the community",
+                icon: "❤️",
+                duration: "Ministry"
               }
             ].map((step, index) => (
               <motion.div
@@ -896,7 +1009,7 @@ export default function HomePage() {
                 {/* Animated Connecting Line */}
                 {index < 3 && (
                   <motion.div 
-                    className="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-emerald-300 to-emerald-200 z-0"
+                    className="hidden lg:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-emerald-300 to-teal-200 z-0"
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
                     transition={{ delay: index * 0.2 + 0.5, duration: 0.8 }}
@@ -1040,7 +1153,7 @@ export default function HomePage() {
               Frequently Asked Questions
             </motion.h2>
             <motion.p variants={itemFadeUp} className="text-xl text-gray-600">
-              Everything you need to know about our treatments
+              Everything you need to know about visiting Elijah Church of Christ
             </motion.p>
           </motion.div>
 
@@ -1053,24 +1166,28 @@ export default function HomePage() {
           >
             {[ 
               {
-                q: "What time is check‑in and check‑out?",
-                a: "Standard check‑in is from 14:00 and check‑out by 10:30. Early arrivals / late departures are subject to availability—message us on WhatsApp to arrange."
+                q: "What time are services?",
+                a: "Sunday Service 10:00 AM. Midweek Prayer Wednesday 6:00 PM. Youth & Teens Saturday 10:00 AM. Join us a few minutes early to connect."
               },
               {
-                q: "Do you offer on‑site parking?",
-                a: "Yes, complimentary secure parking is available for registered guests within the gated property."
+                q: "What should I wear?",
+                a: "Come as you are. Some dress casual, some dress formal—everyone is welcome."
               },
               {
-                q: "Is Wi‑Fi included?",
-                a: "Uncapped high‑speed Wi‑Fi is included in all rooms and public areas—ideal for remote work or streaming."
+                q: "Is there children’s ministry?",
+                a: "Yes. Children’s Church runs during the main service. Check‑in opens 15 minutes before service."
               },
               {
-                q: "How do I confirm a booking?",
-                a: "You can reserve directly via WhatsApp (+27 76 207 3299) or phone. A small deposit may be requested for peak dates to secure your stay."
+                q: "Is parking available?",
+                a: "Yes, free on‑site parking with volunteer assistance. Please follow the directions when you arrive."
               },
               {
-                q: "What is your cancellation policy?",
-                a: "Flexible: Free cancellation up to 48 hours before arrival (standard dates). Peak / event periods may have different terms—shared during enquiry."
+                q: "How can I receive prayer or counseling?",
+                a: "Our prayer team is available after every service. You can also request a confidential appointment via our Contact page."
+              },
+              {
+                q: "How can I give or partner with the church?",
+                a: "You can give during service, online, or via WhatsApp. We appreciate your partnership in advancing the Gospel."
               }
             ].map((faq, index) => (
               <motion.div key={index} variants={itemFadeUp}>
@@ -1093,7 +1210,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Google Reviews Style Testimonials */}
+      {/* Testimonies */}
       <section className="section-padding bg-white">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -1103,31 +1220,13 @@ export default function HomePage() {
             viewport={{ once: true, margin: "-80px" }}
             className="text-center mb-12"
           >
-            {/* Google Reviews Header */}
             <motion.div
               variants={itemFadeUp}
               className="inline-flex items-center space-x-3 mb-8"
             >
-              <div className="flex items-center space-x-2">
-                <svg className="w-8 h-8" viewBox="0 0 24 24">
-                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                </svg>
-                <span className="text-xl font-medium text-gray-700">Google</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                    </svg>
-                  ))}
-                </div>
-                <span className="text-lg font-medium text-gray-700">4.9</span>
-                <span className="text-gray-500">•</span>
-                <span className="text-gray-500">Based on 127 reviews</span>
+              <div className="flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 border border-emerald-200">
+                <Sparkles className="w-4 h-4" />
+                <span className="text-sm font-medium">Praise Reports</span>
               </div>
             </motion.div>
             
@@ -1135,13 +1234,13 @@ export default function HomePage() {
               variants={itemFadeUp} 
               className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
             >
-              Guest Reviews
+              Testimonies
             </motion.h2>
             <motion.p 
               variants={itemFadeUp} 
               className="text-lg text-gray-600"
             >
-              Genuine impressions from travelers who stayed with us
+              Stories of healing and transformation at Elijah Church of Christ
             </motion.p>
           </motion.div>
           {/* Google-style Reviews Grid */}
@@ -1158,15 +1257,15 @@ export default function HomePage() {
                 avatar: "TM",
                 rating: 5,
                 date: "2 weeks ago",
-                review: "Loved the calm residential feel yet still close to everything. Room was spotless, bed super comfortable and check‑in was effortless via WhatsApp.",
+                review: "I came heavy‑hearted and left with peace. The prayer team stood with me, and I witnessed God’s hand restoring my family.",
                 helpful: 9
               },
               {
-                name: "James R.",
+                name: "James R.", 
                 avatar: "JR", 
                 rating: 5,
                 date: "1 month ago",
-                review: "Fast Wi‑Fi, quiet nights and really good coffee station. Perfect for my remote work week in Joburg. Staff responded instantly when I needed an iron.",
+                review: "Powerful worship and practical teaching. I felt welcomed from the moment I walked in—this church has become my family.",
                 helpful: 6
               },
               {
@@ -1174,7 +1273,7 @@ export default function HomePage() {
                 avatar: "AP",
                 rating: 5,
                 date: "3 weeks ago", 
-                review: "Suite view at sunset was amazing. Loved the modern finishes and the linen quality. Definitely booking again for our next stopover.",
+                review: "My child loves the Children’s Church and looks forward to Sundays. We’ve seen real growth in our home since coming to ECC.",
                 helpful: 11
               }
             ].map((review, index) => (
@@ -1210,7 +1309,7 @@ export default function HomePage() {
                           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                           </svg>
-                          <span>Cape Town</span>
+                          <span>Johannesburg</span>
                         </div>
                       </div>
                     </div>
@@ -1332,11 +1431,11 @@ export default function HomePage() {
               animate={{ textShadow: ["0 0 18px rgba(255,255,255,0.4)", "0 0 36px rgba(255,255,255,0.7)", "0 0 18px rgba(255,255,255,0.4)"] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-              Ready to Book Your Stay?
+              Ready to Visit or Need Prayer?
             </motion.h2>
             
             <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-              Reserve directly for the best flexibility. Instant assistance via WhatsApp for special requests, group enquiries or extended stays.
+              We’d love to meet you. Reach out for prayer, plan your visit, or ask about ministries and serving opportunities.
             </p>
 
             <motion.div 
@@ -1346,28 +1445,28 @@ export default function HomePage() {
             >
               <div className="flex items-center justify-center space-x-8 text-white">
                 <div className="text-center">
-                  <div className="text-2xl font-bold">4 Types</div>
-                  <div className="text-sm opacity-80">Room Options</div>
+                  <div className="text-2xl font-bold">3 Services</div>
+                  <div className="text-sm opacity-80">Sunday • Midweek • Youth</div>
                 </div>
                 <div className="w-px h-8 bg-white/30"></div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold">Fast</div>
-                  <div className="text-sm opacity-80">Check-In</div>
+                  <div className="text-2xl font-bold">Prayer</div>
+                  <div className="text-sm opacity-80">Confidential Support</div>
                 </div>
                 <div className="w-px h-8 bg-white/30"></div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold">24/7</div>
-                  <div className="text-sm opacity-80">Support</div>
+                  <div className="text-2xl font-bold">Family</div>
+                  <div className="text-sm opacity-80">Welcoming Community</div>
                 </div>
               </div>
             </motion.div>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-      <Link href="https://wa.me/27762073299?text=Hi%20Glenanda%20Hotel%2C%20I'd%20like%20to%20book%20a%20stay." target="_blank">
+      <Link href="https://wa.me/27762073299?text=Hi%20Elijah%20Church%20of%20Christ%2C%20I'd%20like%20to%20plan%20a%20visit%20and%20request%20prayer." target="_blank">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
       <Button size="lg" className="bg-white text-emerald-600 hover:bg-gray-50 text-lg px-12 py-6 rounded-full group shadow-2xl">
         <Calendar className="mr-2 h-5 w-5" />
-        WhatsApp Reservation
+        WhatsApp Us
                     <motion.div
                       className="ml-2"
                       animate={{ x: [0, 5, 0] }}
@@ -1379,10 +1478,10 @@ export default function HomePage() {
                 </motion.div>
               </Link>
               
-      <Link href="/rooms">
+      <Link href="/services">
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 text-lg px-12 py-6 rounded-full">
-        View All Rooms
+        Explore Ministries
                   </Button>
                 </motion.div>
               </Link>
@@ -1395,7 +1494,7 @@ export default function HomePage() {
               transition={{ delay: 0.5 }}
               viewport={{ once: true }}
             >
-              <p>✓ Direct booking • ✓ Flexible support • ✓ Local hospitality</p>
+              <p>✓ Warm welcome • ✓ Confidential prayer • ✓ Christ-centered community</p>
             </motion.div>
           </motion.div>
         </div>

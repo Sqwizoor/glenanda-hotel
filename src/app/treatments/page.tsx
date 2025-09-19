@@ -6,36 +6,42 @@ import { Button } from "@/components/ui/button";
 
 const treatments = [
   {
-    title: "MediBright Skin Peel",
+    title: "Youth Ministry Program",
     summary:
-      "Advanced brightening skin peel rich in Kojic and Lactic acids to control and prevent melanin production.",
+      "Dynamic program designed to engage young people with faith, fellowship, and leadership development through worship, Bible study, and community service.",
     bullets: [
-      "Addresses hyperpigmentation",
-      "Helps post-acne scarring",
-      "Improves signs of ageing",
+      "Weekly youth gatherings with worship and teaching",
+      "Leadership training and mentorship opportunities",
+      "Community outreach and service projects",
+      "Sports and recreational activities",
+      "College and career guidance",
+      "Small group Bible studies"
     ],
   },
   {
-    title: "Algae Peel",
+    title: "Children's Ministry",
     summary:
-      "Seaweed powder with natural micro-needles stimulates collagen production and accelerates cellular renewal.",
+      "Nurturing environment where children learn about God's love through age-appropriate Bible stories, songs, crafts, and interactive activities.",
     bullets: [
-      "Targets acne of all grades",
-      "Reduces post-acne scarring",
-      "Improves hyperpigmentation & melasma",
-      "Softens fine lines, wrinkles & pore size",
-      "Reduces dark circles and boosts circulation",
-      "Repairs microscopic injuries and resurfaces",
+      "Sunday school classes for all ages",
+      "Vacation Bible School programs",
+      "Children's church services",
+      "Music and arts programs",
+      "Character development activities",
+      "Parent-child fellowship events"
     ],
   },
   {
-    title: "Dermaplaning",
+    title: "Prayer Ministry",
     summary:
-      "Gently removes dead skin cell layers for smoother, softer, brighter skin and improves product penetration.",
+      "Dedicated ministry focused on intercessory prayer, spiritual warfare, and developing a deeper prayer life through various prayer formats and teachings.",
     bullets: [
-      "Reveals healthy glowing skin",
-      "Primes skin for peels & lasers",
-      "Enhances treatment effectiveness",
+      "Weekly prayer meetings",
+      "24/7 prayer room availability",
+      "Prayer counseling and support",
+      "Prayer walking and community outreach",
+      "Teaching on prayer principles",
+      "Prayer partner matching"
     ],
   },
 ];
@@ -52,7 +58,7 @@ export default function TreatmentsPage() {
             transition={{ duration: 0.6 }}
             className="text-4xl md:text-6xl font-orbitron font-extrabold text-gray-900"
           >
-            Treatments designed for real results
+            Ministry Programs & Activities
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -60,7 +66,8 @@ export default function TreatmentsPage() {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto"
           >
-            Simple, effective, and backed by science. Explore our signature peels and skin therapies tailored to your goals.
+            Life-changing programs designed to nurture faith, build community, and serve others. 
+            Explore our ministry activities tailored to spiritual growth and service.
           </motion.p>
         </div>
       </section>
@@ -78,7 +85,7 @@ export default function TreatmentsPage() {
               className="rounded-2xl border border-gray-200 shadow-sm p-6 bg-white"
             >
               <div className="flex items-center gap-2 mb-3">
-                <Leaf className="h-5 w-5 text-green-500" />
+                <Sparkles className="h-5 w-5 text-green-500" />
                 <h3 className="text-xl font-semibold text-gray-900">{item.title}</h3>
               </div>
               <p className="text-gray-600 mb-4">{item.summary}</p>
@@ -91,7 +98,7 @@ export default function TreatmentsPage() {
                 ))}
               </ul>
               <div className="mt-6 flex gap-3">
-                <Button className="bg-green-500 hover:bg-green-600">Book consultation</Button>
+                <Button className="bg-green-500 hover:bg-green-600">Join Program</Button>
                 <Button variant="outline" className="border-green-500 text-green-600 hover:bg-green-50">Learn more</Button>
               </div>
             </motion.div>
@@ -108,7 +115,7 @@ export default function TreatmentsPage() {
             viewport={{ once: true }}
             className="text-3xl md:text-5xl font-orbitron font-bold text-gray-900 text-center mb-10"
           >
-            Real results, real confidence
+            Lives Transformed by Faith
           </motion.h2>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -122,10 +129,10 @@ export default function TreatmentsPage() {
                 className="rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm"
               >
                 <div className="aspect-[4/3] bg-gradient-to-br from-green-100 to-green-50 flex items-center justify-center text-green-600">
-                  <span className="text-sm">Before / After</span>
+                  <span className="text-sm">Testimony</span>
                 </div>
                 <div className="p-4">
-                  <p className="text-sm text-gray-600">Visible improvement after 2–4 sessions.</p>
+                  <p className="text-sm text-gray-600">Life changed through ministry participation and spiritual growth.</p>
                 </div>
               </motion.div>
             ))}
@@ -136,7 +143,7 @@ export default function TreatmentsPage() {
       {/* Benefits strip */}
       <section className="py-12 bg-gray-50 border-t border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-6">
-          {["Free consultations","Personalized treatment plans","Visible improvements from first sessions"].map((t, i) => (
+          {["Free introductory sessions","Personalized spiritual growth plans","Life-changing impact from day one"].map((t, i) => (
             <motion.div
               key={t}
               initial={{ opacity: 0, y: 12 }}
@@ -165,14 +172,14 @@ export default function TreatmentsPage() {
           </motion.h2>
           <div className="mt-8 space-y-4">
             {[{
-              q: "How many sessions will I need?",
-              a: "Most clients see noticeable results within 2–4 sessions, depending on skin goals and concerns.",
+              q: "How do I get involved in a ministry program?",
+              a: "Contact us to schedule an introductory meeting where we can discuss your interests and help you find the right program for your spiritual journey.",
             },{
-              q: "Is there downtime?",
-              a: "Treatments are minimally invasive with little to no downtime. You can usually resume normal activities the same day.",
+              q: "Are there any requirements to join?",
+              a: "Most programs are open to anyone seeking spiritual growth. Some leadership programs may have specific prerequisites, but we welcome everyone to participate.",
             },{
-              q: "Are consultations free?",
-              a: "Yes. We offer free consultations to assess your skin and recommend the best plan.",
+              q: "Can I try a program before committing?",
+              a: "Yes! We offer introductory sessions for most programs so you can experience our community and see if it's a good fit for you.",
             }].map((f, i) => (
               <motion.div
                 key={f.q}
@@ -199,9 +206,9 @@ export default function TreatmentsPage() {
             viewport={{ once: true }}
             className="text-3xl md:text-5xl font-orbitron font-bold text-gray-900"
           >
-            Book your free consultation
+            Get Involved Today
           </motion.h2>
-          <p className="mt-3 text-gray-600">Contact: <span className="font-semibold">072 7389 214</span> or <span className="font-semibold">bookings@mediglowaesthetics.co.za</span></p>
+          <p className="mt-3 text-gray-600">Contact: <span className="font-semibold">072 7389 214</span> or <span className="font-semibold">info@eccchurch.org</span></p>
           <div className="mt-6 flex justify-center gap-4">
             <Button className="bg-green-500 hover:bg-green-600"><Phone className="mr-2 h-4 w-4"/>Call now</Button>
             <Button variant="outline" className="border-green-500 text-green-600 hover:bg-green-50"><Mail className="mr-2 h-4 w-4"/>Email us</Button>
